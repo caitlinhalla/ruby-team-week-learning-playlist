@@ -9,6 +9,10 @@ get('/') do
   erb(:index)
 end
 
-post('/welcome') do
-  erb(:student_id)
+post('/login') do
+  redirect '/dashboard'
+end
+
+get('/dashboard') do
+  erb(:student_dashboard)
 end
