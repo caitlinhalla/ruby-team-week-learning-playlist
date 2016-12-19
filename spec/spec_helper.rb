@@ -6,6 +6,7 @@ require("shoulda-matchers")
 require('lesson')
 require('playlist')
 require('student')
+require('user')
 
 RSpec.configure do |config|
   config.after(:each) do
