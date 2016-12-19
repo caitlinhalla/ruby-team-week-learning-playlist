@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
-  database: project_development
+  database: learning_playlist_development
 
 test:
   adapter: postgresql
-  database: project_test
+  database: learning_playlist_test
