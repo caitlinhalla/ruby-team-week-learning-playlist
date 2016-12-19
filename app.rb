@@ -8,3 +8,5 @@ require("pg")
 get('/') do
   erb(:index)
 end
+
+post('/welcome')
