@@ -7,6 +7,7 @@ require('./lib/user')
 require('./lib/playlist')
 require('./lib/student')
 require('./lib/lesson')
+require('warden')
 require('./helpers/session')
 
 
