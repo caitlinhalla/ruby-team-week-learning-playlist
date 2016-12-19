@@ -14,3 +14,11 @@ require('./helpers/session')
 get('/') do
   erb(:index)
 end
+
+post('/login') do
+  redirect '/dashboard'
+end
+
+get('/dashboard') do
+  erb(:student_dashboard)
+end
