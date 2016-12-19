@@ -9,4 +9,6 @@ get('/') do
   erb(:index)
 end
 
-post('/welcome')
+post('/welcome') do
+  erb(:student_id)
+end
