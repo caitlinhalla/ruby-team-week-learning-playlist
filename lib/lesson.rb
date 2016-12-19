@@ -1,3 +1,3 @@
 class Lesson < ActiveRecord::Base
-  has_many_and_belongs_to(:playlist)
+  has_and_belongs_to_many(:playlists)
 end
