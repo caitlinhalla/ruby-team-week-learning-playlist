@@ -1,62 +1,30 @@
-<nav  class="nav-wraper">
-  <h1 class=" center"> Hello Student.name !</h1>
-</nav>
-<div class="row">
-  <div class="col s3">
-    <a href="/" >
-      <div class="card blue  darken-4 ">
-        <div class="card-content white-text">
-          <span class="card-title">Create Playlist</span>
-          <p>Click this card to create your own playlist of coding lessons!</p>
-        </div>
-      </div>
-    </a>
-    <a href="/" >
-      <div class="card blue  darken-4 ">
-        <div class="card-content white-text">
-          <span class="card-title">Your Playlists</span>
-          <p>Click this card to manage your  playlist of coding lessons!</p>
-        </div>
-      </div>
-    </a>
-    <a href="/" >
-      <div class="card blue  darken-4 ">
-        <div class="card-content white-text">
-          <span class="card-title">Favorite Playlists</span>
-          <p>Click this card to look at your favorite playlists!</p>
-        </div>
-      </div>
-    </a>
-    <a href="/" >
-      <div class="card blue  darken-4 ">
-        <div class="card-content white-text">
-          <span class="card-title">Manage lessons</span>
-          <p>Click this card to create and manage your lessons!</p>
-        </div>
-      </div>
-    </a>
-  </div>
-<div class="col s9">
-  <form>
-    <div class="input-field">
-      <input id="search" type="search" required>
-      <label for="search"><i class="material-icons">search</i></label>
-      <i class="material-icons">close</i>
-    </div>
-  </form>
-    <div class="row">
-      <div class="col 9">
-        <% if @lessons.any? %>
-        <ul>
-          <% @lessons.each do |lesson| %>
-          <li> <%=lesson.title %> </li>
-          <%end%>
-        </ul>
-        <%else%>
-        <p>There are no lessons. Add them with the form below</p>
-        <%end%>
-      </div>
-    </div>
-  <%= erb(:lesson_form) %>
-  </div>
-</div><!--end of row-->
+<h1><%= @lesson.title %></h1>
+
+<h3>Description:</h3>
+<p><%= @lesson.description %> </p>
+<h3>source:</h3>
+<p><%= @lesson.external_link %></p>
+<h3>View Status:</h3>
+<p><%= @lesson.is_private %></p>
+<hr>
+<form class="" action="/dashboard/lessons/<%=@lesson.id%>" method="post">
+<input type="hidden" name="_method" value="patch">
+<div class="input-field col s12">
+<input placeholder="" id="lesson_title" name="lesson_title" value="<%=@lesson.title%>" type="text" class="validate">
+  <label for="lesson_title">Lesson Title</label>
+</div>
+<div class="input-field col s12">
+<input placeholder='Enter Lesson Description' id='lesson_description' name="lesson_description" value="<%=@lesson.description%>" type='text' class='validate'>
+  <label for='lesson_description'>Lesson Description</label>
+</div>
+<div class='input-field col s12'>
+<input placeholder='Enter content link' id='external_link' value="<%=@lesson.external_link%>" type='text' name="external_link" class='validate'>
+  <label for='external_link'>Link to Lesson Content</label>
+</div>
+<div class='input-field col s6'>
+<input value="<%=@lesson.is_private%>" type="checkbox" id="is_private" name="is_private">
+  <label for="is_private">Private Lesson</label>
+</div>
+<br>
+<button type='submit' class='btn btn-success'>Update Lesson</button>
+</form>

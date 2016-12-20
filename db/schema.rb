@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220175824) do
+ActiveRecord::Schema.define(version: 20161220212944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20161220175824) do
     t.string  "title"
     t.text    "description"
     t.string  "external_link"
-    t.boolean "private"
     t.boolean "complete"
     t.integer "tag_id"
+    t.boolean "is_private"
   end
 
   create_table "lessons_playlists", force: :cascade do |t|
