@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219191701) do
+ActiveRecord::Schema.define(version: 20161220175824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20161219191701) do
     t.string  "title"
     t.text    "description"
     t.string  "external_link"
-    t.string  "tag"
     t.boolean "private"
     t.boolean "complete"
+    t.integer "tag_id"
   end
 
   create_table "lessons_playlists", force: :cascade do |t|
@@ -41,11 +41,15 @@ ActiveRecord::Schema.define(version: 20161219191701) do
   create_table "students", force: :cascade do |t|
     t.string  "name"
     t.boolean "guardian_status"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_hash"
-
   end
 
 end

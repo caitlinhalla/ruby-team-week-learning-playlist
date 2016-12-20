@@ -1,31 +1,31 @@
 <h1>Lesson Form</h1>
 <div class="row">
-  <form class="col s12">
+  <form class="col s12" action="/dashboard/lessons/new" method="post">
     <div class="row">
       <div class="input-field col s12">
-        <input placeholder="Enter lesson Title" id="lesson_title" type="text" class="validate">
+        <input placeholder="Enter lesson Title" id="lesson_title" name="lesson_title" type="text" class="validate">
         <label for="lesson_title">Lesson Title</label>
       </div>
     </div>
 
     <div class='row'>
       <div class="input-field col s12">
-        <input placeholder='Enter Lesson Description' id='lesson_description' type='text' class='validate'>
+        <input placeholder='Enter Lesson Description' id='lesson_description' name="lesson_description" type='text' class='validate'>
         <label for='lesson_description'>Lesson Description</label>
       </div>
     </div>
 
     <div class='row'>
       <div class='input-field col s12'>
-        <input placeholder='Enter content link' id='external_link' type='text' class='validate'>
+        <input placeholder='Enter content link' id='external_link' type='text' name="external_link" class='validate'>
         <label for='external_link'>Link to Lesson Content</label>
       </div>
     </div>
 
     <div class='row'>
       <div class='input-field col s6'>
-        <input type="checkbox" id="private">
-        <label for="private">Private Lesson</label>
+        <input type="checkbox" id="is_public" name="is_public">
+        <label for="is_public">Private Lesson</label>
       </div>
     </div>
     <br>
