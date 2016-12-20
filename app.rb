@@ -63,6 +63,7 @@ delete('/playlist/:id') do
   @playlist = Playlist.find(params.fetch('id').to_i)
   @playlist.delete
   redirect('/student_dashboard')
+end
 
 get('/auth/login') do
   erb(:_login_form)

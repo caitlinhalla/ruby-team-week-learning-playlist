@@ -1,6 +1,6 @@
 # _Learning Playlist_
 
-#### By _**Caitlin Ashtari, Kenneth Black, Marty Kovach, Margie Nevarez, Hailey Swain**, 12/22/2016_
+#### By _**Caitlin Ashtari, Kenneth Black, Marty Kovach, Margie Nevarez, Haley Swain**, 12/22/2016_
 
 ## Description
 
@@ -39,4 +39,4 @@ _Ruby, Sinatra, SQL, Postgres, BCrypt, Warden, Heroku, JavaScript, MaterializeCS
 
 *MIT License*
 
-Copyright (c) 2016 **_Caitlin Ashtari_**, **_Kenneth Black_**, **_Marty Kovach_**, **_Margie Nevarez_**, **_Hailey Swain_**
+Copyright (c) 2016 **_Caitlin Ashtari_**, **_Kenneth Black_**, **_Marty Kovach_**, **_Margie Nevarez_**, **_Haley Swain_**
