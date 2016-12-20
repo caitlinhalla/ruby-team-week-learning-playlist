@@ -17,12 +17,14 @@
     <li>Look through the playists of others to find lessons that your are interested in!
   </ul>
 </div>
-  <div id="user-login">
-    <form class="" action="/login" method="post" id ="sign_in_form">
-      <label for="">User name</label>
-      <input type="text" name="user_input" id="user_name_input">
-      <label for="">Enter your password</label>
-      <input type="text" name="user_password" id="user_id_input">
-      <button type="submit" name="user_login">Log in</button>
-    </form>
+
+<% unless @user %>
+<div class="row">
+  <div class="col m6">
+    <%= erb :_login_form %>
   </div>
+  <div class="col m6">
+    <%= erb :_register %>
+  </div>
+</div>
+<% end %>
