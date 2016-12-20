@@ -68,7 +68,7 @@ delete('/dashboard/lessons/:id') do
   @lessons = Lesson.all()
   redirect '/dashboard/lessons'
 end
-  
+
 get('/playlists/new') do
   erb(:playlist_form)
 end
@@ -76,8 +76,8 @@ end
 post('/playlists/new') do
   name = params.fetch('playlist_name')
   due_date = params.fetch('due_date')
-  privacy = params.has_key?('private')
-  @playlist = Playlist.create({:name => name, :due_date => due_date, :private => privacy})
+  is_private = params.has_key?('private')
+  @playlist = Playlist.create({:name => name, :due_date => due_date, :is_private => is_private})
   @playlists = Playlist.all
   redirect('/dashboard')
 end
