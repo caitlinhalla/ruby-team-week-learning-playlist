@@ -8,6 +8,7 @@ require('playlist')
 require('student')
 require('user')
 require('tag')
+require('pry')
 
 RSpec.configure do |config|
   config.after(:each) do

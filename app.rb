@@ -3,6 +3,7 @@ require("sinatra/reloader")
 require('sinatra/activerecord')
 also_reload("lib/**/*.rb")
 require("pg")
+require("pry")
 require('./lib/lesson')
 require('./lib/playlist')
 require('./lib/student')
@@ -25,11 +26,11 @@ get('/dashboard/lessons') do
   erb(:lesson_detail)
 end
 
-post('dasboard/lessons/new') do
+post('/dashboard/lessons/new') do
   title = params.fetch('lesson_title')
   description = params.fetch('lesson_description')
   link = params.fetch('external_link')
-  is_public = params.fetch('is_public')
-  @lesson = Lesson.create({:title => title, :description => description, :external_link => external_link, :private => is_public})
-  redirect '/lessons/:id'
+  is_public = params.has_key?('is_public')
+  @lesson = Lesson.create({:title => title, :description => description, :external_link => link, :private => is_public})
+  redirect 'dashboard/lessons'
 end
