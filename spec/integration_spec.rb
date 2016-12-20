@@ -37,3 +37,13 @@ describe("update the lesson details", {:type => :feature}) do
     expect(page).to have_content("How to Git Good")
   end
 end
+
+describe("delete single lesson", {:type => :feature}) do
+  it("delete a lesson from the database") do
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
+    visit('/dashboard/lessons')
+    click_link("Zebra Scrubbing")
+    click_button('Delete')
+    expect(page).to have_content("There are no lessons. Add them with the form below")
+  end
+end

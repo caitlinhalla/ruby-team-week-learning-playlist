@@ -49,3 +49,10 @@ patch('/dashboard/lessons/:id') do
   @lesson.update({:title => title, :description => description, :external_link => link, :is_private => is_private})
   redirect "/dashboard/lesson_detail/#{params.fetch('id').to_i}"
 end
+
+delete('/dashboard/lessons/:id') do
+  @lesson = Lesson.find(params.fetch('id').to_i)
+  @lesson.destroy()
+  @lessons = Lesson.all()
+  redirect '/dashboard/lessons'
+end
