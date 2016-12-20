@@ -3,7 +3,9 @@
     <ul id="nav-mobile" class="left">
       <li><a href="/">Home</a></li>
       <% if @user %>
-        <li>Welcome <%= @user.username %>!</li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/playlists">Playlists</a></li>
+        <li><a href="/lessons">Lessons</a></li>
       <% end %>
     </ul>
     <ul id="nav-mobile" class="right hide-on-med-and-down">

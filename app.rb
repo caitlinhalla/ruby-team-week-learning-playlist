@@ -20,8 +20,11 @@ if User.all.length == 0
   User.create({:username => "krieger", :password => "guest"})
 end
 
-get('/') do
+before do
   @user = env['warden'].user
+end
+
+get('/') do
   erb(:index)
 end
 
@@ -74,7 +77,7 @@ post('/auth/login') do
   env['warden'].authenticate!
   flash[:success] = "Successfully logged in. Welcome #{env['warden'].user.username}"
   if session[:return_to].nil?
-    redirect '/'
+    redirect '/dashboard'
   else
     redirect session[:return_to]
   end
@@ -99,7 +102,6 @@ get '/auth/register' do
 end
 
 post '/auth/register' do
-  p params
   env['warden'].logout
   if params['user']['password'] == params['user']['password-repeat']
     if User.find_by_username(params['user']['username'])
