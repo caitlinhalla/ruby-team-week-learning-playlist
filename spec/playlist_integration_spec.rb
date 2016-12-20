@@ -14,7 +14,7 @@ describe('adding a playlist', :type => :feature) do
     expect(page).to have_content('Hello')
   end
 
-  it('allows a user to update and delete a playlist') do
+  it('allows a user to update a playlist') do
     playlist = Playlist.create({:name => 'Happy Playlist', :due_date => '2016-12-12'})
     visit('/dashboard')
     click_link('Your Playlists')
@@ -23,4 +23,14 @@ describe('adding a playlist', :type => :feature) do
     click_button('Update')
     expect(page).to have_content('Sad Playlist')
   end
+
+  it('allows a user to delete a playlist') do
+    playlist = Playlist.create({:name => 'Happy Playlist', :due_date => '2016-12-12'})
+    visit('/dashboard')
+    click_link('Your Playlists')
+    click_link('Happy Playlist')
+    click_button('Delete Playlist')
+    expect(page).not_to have_content('Happy Playlist')
+  end
+
 end
