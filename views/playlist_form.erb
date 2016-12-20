@@ -1,23 +1,23 @@
 <h1>Create A Playlist</h1>
 <div class="row">
-  <form class="col s12">
+  <form class="col s12" action='/playlist/new' method="post">
     <div class="row">
 
       <div class="input-field col s12">
-        <input placeholder="Enter Playlist Name" id="playlist_name" type="text" class="validate">
+        <input placeholder="Enter Playlist Name" id="playlist_name" name='playlist_name' type="text" class="validate">
         <label for="playlist_name">Playlist Name</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6">
-        <input type="date" class="datepicker" name="due_date">
+        <input type="date" class="datepicker" name="due_date" placeholder="Click to Enter Due Date">
       </div>
     </div>
 
     <div class ='row'>
       <div class="input-field col s6">
-        <input type="checkbox" id="private">
+        <input type="checkbox" id="private" name ='private'>
         <label for="private">Private Lesson</label>
       </div>
     </div>
