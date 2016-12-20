@@ -68,7 +68,7 @@ delete('/dashboard/lessons/:id') do
   @lessons = Lesson.all()
   redirect '/dashboard/lessons'
 end
-  
+
 get('/playlists/new') do
   erb(:playlist_form)
 end
