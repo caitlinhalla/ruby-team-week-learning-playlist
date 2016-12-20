@@ -23,14 +23,15 @@ end
 
 get('/dashboard/lessons') do
   @lessons = Lesson.all
+
   erb(:lesson_detail)
 end
 
-post('/dashboard/lessons/new') do
+post('/dashboard/lessons') do
   title = params.fetch('lesson_title')
   description = params.fetch('lesson_description')
   link = params.fetch('external_link')
   is_public = params.has_key?('is_public')
   @lesson = Lesson.create({:title => title, :description => description, :external_link => link, :private => is_public})
-  redirect 'dashboard/lessons'
+  redirect '/dashboard/lessons'
 end

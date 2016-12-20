@@ -1,6 +1,6 @@
 <h1>Lesson Form</h1>
 <div class="row">
-  <form class="col s12" action="/dashboard/lessons/new" method="post">
+  <form class="col s12" action="/dashboard/lessons" method="post">
     <div class="row">
       <div class="input-field col s12">
         <input placeholder="Enter lesson Title" id="lesson_title" name="lesson_title" type="text" class="validate">
@@ -14,7 +14,6 @@
         <label for='lesson_description'>Lesson Description</label>
       </div>
     </div>
-
     <div class='row'>
       <div class='input-field col s12'>
         <input placeholder='Enter content link' id='external_link' type='text' name="external_link" class='validate'>
@@ -28,6 +27,6 @@
       </div>
     </div>
     <br>
-    <button type='success' class='btn btn-success'>Submit Lesson</button>
+    <button type='submit' class='btn btn-success'>Submit Lesson</button>
   </form>
 </div>
