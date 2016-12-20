@@ -1,5 +1,5 @@
 <h1>Update <%= @playlist.name %></h1>
-<form action="/playlist/<%= @playlist.id() %>" method="post">
+<form action="/playlists/<%= @playlist.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
   <label for="playlist_name">Update playlist name:</label>
@@ -9,9 +9,9 @@
 </form>
 
 
-<form action="/<%= @playlist.id() %>" method="post"  id="delete-button">
+<form action="/playlists/<%= @playlist.id() %>" method="post"  id="delete-button">
   <input name="_method" type="hidden" value="delete">
   <button type="submit" class="btn btn-success">Delete Playlist</button>
 </form>
 
-<a href = '/'>Home</a>
+<a href = '/dashboard'>Home</a>

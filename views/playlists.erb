@@ -3,12 +3,12 @@
 
 <ul>
   <% @playlists.each do |playlist| %>
-  <li><a href="/playlist/<%= playlist.id %>/edit"><%= playlist.name %></a></li>
+  <li><a href="/playlists/<%= playlist.id %>/edit"><%= playlist.name %></a></li>
   <% end %>
 </ul>
 
 <% else %>
-<p><a href="/playlist/new">Create a playlist</p>
+<p><a href="/playlists/new">Create a playlist</p>
 <% end %>
 
-<a href = '/'>Home</a>
+<a href = '/dashboard'>Home</a>

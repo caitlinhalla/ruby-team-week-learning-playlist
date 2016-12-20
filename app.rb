@@ -4,6 +4,7 @@ require('sinatra/activerecord')
 also_reload("lib/**/*.rb")
 require("pg")
 require('./lib/playlist')
+require('pry')
 
 get('/') do
   erb(:index)
@@ -18,11 +19,11 @@ get('/dashboard') do
   erb(:student_dashboard)
 end
 
-get('/playlist/new') do
+get('/playlists/new') do
   erb(:playlist_form)
 end
 
-post('/playlist/new') do
+post('/playlists/new') do
   name = params.fetch('playlist_name')
   due_date = params.fetch('due_date')
   privacy = params.has_key?('private')
@@ -36,20 +37,20 @@ get('/playlists') do
   erb(:playlists)
 end
 
-get('/playlist/:id/edit') do
+get('/playlists/:id/edit') do
   @playlist = Playlist.find(params.fetch('id').to_i)
   erb(:playlist_edit)
 end
 
-patch('/playlist/:id') do
+patch('/playlists/:id') do
   @playlist = Playlist.find(params.fetch('id').to_i)
   name = params.fetch('playlist_name')
   @playlist.update({:name => name})
-  redirect('/dashboard')
+  redirect('/playlists')
 end
 
-delete('/playlist/:id') do
+delete('/playlists/:id') do
   @playlist = Playlist.find(params.fetch('id').to_i)
   @playlist.delete
-  redirect('/student_dashboard')
+  redirect('/playlists')
 end
