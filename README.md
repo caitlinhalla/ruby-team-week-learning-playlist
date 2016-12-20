@@ -1,10 +1,10 @@
 # _Learning Playlist_
 
-#### By _**Caitlin Ashtari, Kenneth Black, Marty Kovach, Margie Nevarez, Hailey Swain**, MM/DD/YYYY_
+#### By _**Caitlin Ashtari, Kenneth Black, Marty Kovach, Margie Nevarez, Hailey Swain**, 12/22/2016_
 
 ## Description
 
-Currently, classroom instruction is one-size fits all. Whether in a public elementary school, university lecture, or code school, students are treated as a collective rather than as individuals with different learning styles, interests, and motivations. The goal of this project is to make the learning experience differentiated through a student-teacher created “playlist” or lesson list so that each student’s individual needs are met and every student excels. Includes options for teacher created lessons, or self-directed lessons. 
+Currently, classroom instruction is one-size fits all. Whether in a public elementary school, university lecture, or code school, students are treated as a collective rather than as individuals with different learning styles, interests, and motivations. The goal of this project is to make the learning experience differentiated through a student-teacher created “playlist” or lesson list so that each student’s individual needs are met and every student excels. Includes options for teacher created lessons, or self-directed lessons.
 
 
 **User Stories**
@@ -33,7 +33,7 @@ Currently, classroom instruction is one-size fits all. Whether in a public eleme
 
 ## Technologies Used
 
-_Ruby, Sinatra, SQL, Postgres, BCrypt, Warden, JavaScript, MaterializeCSS, jQuery_
+_Ruby, Sinatra, SQL, Postgres, BCrypt, Warden, Heroku, JavaScript, MaterializeCSS, jQuery_
 
 ### License
 

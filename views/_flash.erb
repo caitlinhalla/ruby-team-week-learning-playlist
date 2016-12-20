@@ -1,0 +1,11 @@
+<% if flash[:success] %>
+  <div class="flash green lighten-3 green-text card">
+    <p><%= flash[:success] %></p>
+  </div>
+<% end %>
+
+<% if flash[:error] %>
+  <div class="flash red lighten-3 red-text card">
+    <p><%= flash[:error] %></p>
+  </div>
+<% end %>

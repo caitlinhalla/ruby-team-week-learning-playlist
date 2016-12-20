@@ -1,22 +1,15 @@
-class Auth < Sinatra::Base
-  post('/auth/unauthenticated') do
-    p "----------------ROUTE ACCESS--------------------"
-    session[:return_to] = env['warden.options'][:message] || "You must log in"
-
-    redirect '/auth/login'
-  end
-end
-
-
-
 use Warden::Manager do |config|
-  config.serialize_into_session{ |user| user.id }
-  config.serialize_from_session{ |id| User.get(id)}
+  config.serialize_into_session do |user|
+    user.id
+  end
+  config.serialize_from_session do |id|
+    User.find(id)
+  end
 
   config.scope_defaults :default,
   strategies: [:password],
   action: 'auth/unauthenticated'
-  config.failure_app = Auth
+  config.failure_app = Sinatra::Application
 end
 
 Warden::Manager.before_failure do |env, opts|
@@ -33,7 +26,6 @@ Warden::Strategies.add(:password) do
   end
 
   def authenticate!
-    p params['user']['username']
     user = User.where(:username => params['user']['username']).first
 
     if user.nil?
