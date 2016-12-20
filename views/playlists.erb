@@ -1,0 +1,14 @@
+<% if @playlists.any? %>
+<h1>Your Playlists: </h1>
+
+<ul>
+  <% @playlists.each do |playlist| %>
+  <li><a href="/playlist/<%= playlist.id %>/edit"><%= playlist.name %></a></li>
+  <% end %>
+</ul>
+
+<% else %>
+<p><a href="/playlist/new">Create a playlist</p>
+<% end %>
+
+<a href = '/'>Home</a>
