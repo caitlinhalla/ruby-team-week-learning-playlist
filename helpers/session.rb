@@ -1,3 +1,7 @@
+enable :sessions
+register Sinatra::Flash
+set :session_secret, "supersecret"
+
 use Warden::Manager do |config|
   config.serialize_into_session do |user|
     user.id

@@ -8,6 +8,7 @@ gem('rake')
 gem('warden')
 gem('bcrypt-ruby')
 gem('sinatra-flash', '0.3.0', require: 'sinatra/flash')
+gem('require_all')
 
 group(:test) do
   gem('rspec')

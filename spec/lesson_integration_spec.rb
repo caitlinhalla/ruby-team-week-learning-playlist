@@ -62,7 +62,7 @@ end
 
 describe('the delete tag to a lesson path', {:type => :feature}) do
   it ('it will allow the user to delete a tag from an existing lesson') do
-  test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
      test_tag = Tag.create({:name => "meat"})
      test_lesson.tags.push(test_tag)
      visit "/lessons/#{test_lesson.id}"

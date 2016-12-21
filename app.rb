@@ -1,20 +1,10 @@
 require("bundler/setup")
 Bundler.require(:default)
-
-require('./lib/playlist')
-require('./lib/user')
-require('./lib/tag')
-require('./lib/lesson')
-
-
-
-enable :sessions
-register Sinatra::Flash
-set :session_secret, "supersecret"
 require('./helpers/session')
+require_all('lib')
 
 before do
-  @user = env['warden'].user
+  @user = env['warden'].user rescue env['warden'].logout
 end
 
 get('/') do
@@ -23,7 +13,7 @@ end
 
 get('/dashboard') do
   @playlists = Playlist.all
-  erb(:student_dashboard)
+  erb(:dashboard)
 end
 
 get('/lessons') do
