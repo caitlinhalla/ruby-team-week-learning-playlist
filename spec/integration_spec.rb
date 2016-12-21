@@ -5,7 +5,7 @@ set(:show_exceptions, false)
 
 describe('the add lesson path', {:type => :feature}) do
   it ('it will allow the user to add a lesson to the database') do
-    visit('/dashboard/lessons')
+    visit('/lessons')
     fill_in('lesson_title', :with => "How to Git Good")
     fill_in('lesson_description', :with => "learn.")
     fill_in('external_link', :with => "Yo.")
@@ -17,8 +17,8 @@ end
 
 describe('the view lesson details path', {:type => :feature}) do
   it ('will allow the user the view the detials of specific lesson') do
-    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
-    visit('/dashboard/lessons')
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+    visit('/lessons')
     click_link('Zebra Scrubbing')
     expect(page).to have_content('A beginers guide')
   end
@@ -26,8 +26,8 @@ end
 
 describe("update the lesson details", {:type => :feature}) do
   it('will allow the user to update individual details of a specific lesson') do
-    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
-    visit('/dashboard/lessons')
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+    visit('/lessons')
     click_link('Zebra Scrubbing')
     fill_in('lesson_title', :with => "How to Git Good")
     fill_in('lesson_description', :with => "learn.")
@@ -40,8 +40,8 @@ end
 
 describe("delete single lesson", {:type => :feature}) do
   it("delete a lesson from the database") do
-    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
-    visit('/dashboard/lessons')
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+    visit('/lessons')
     click_link("Zebra Scrubbing")
     click_button('Delete')
     expect(page).to have_content("There are no lessons. Add them with the form below")
