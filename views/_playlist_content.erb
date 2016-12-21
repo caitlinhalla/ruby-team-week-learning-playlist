@@ -1,0 +1,18 @@
+<h2>Current playlist: <%= @playlist.name %></h2>
+<h4>Description </h4>
+<p><%= @playlist.description %></p>
+<h5>Lessons Within this playlist</h5>
+  <%if @playlist.lessons.any?%>
+  <ul>
+    <%@playlist.lessons.each do |lesson| %>
+    <a href ="/lessons/<%= lesson.id %>"><li> <%= lesson.title %></li></a>
+    <h5>Source:</h5>
+    <h6><%= lesson.external_link %></h6>
+    <% end %>
+  </ul>
+  <% else %>
+<p>There are currently no lessons in this playlist. Use the dropdown below to add a lesson.</p>
+  <% end %>
+
+<h5>Due Date</h5>
+<h6><%=@playlist.due_date %>
