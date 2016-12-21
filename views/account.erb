@@ -2,8 +2,8 @@
   <div class="card-content">
     <span class="card-title"><%= @user.username %></span>
     <div class="stats">
-      <p>Playlists: 0</p>
-      <p>Lessons: 0</p>
+      <p>Playlists: <%= @user.playlists.length %></p>
+      <p>Lessons: <%= @user.lessons.length %></p>
     </div>
     <button class="btn blue" onclick="editMode()">Edit</button>
     <form action="/auth/delete" method="post" class="delete-button">

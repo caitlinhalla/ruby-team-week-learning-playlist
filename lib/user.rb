@@ -17,4 +17,14 @@ class User < ActiveRecord::Base
   def authenticate(attempted_password)
     self.password == attempted_password
   end
+
+  def lessons
+    self.playlists.reduce([]) {|arr, pl| arr.concat pl.lessons}
+  end
+
+  def completed_lessons
+    self.lessons.keep_if {|lesson| lesson.complete }
+  end
+
+
 end
