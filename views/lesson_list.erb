@@ -1,55 +1,12 @@
-<nav  class="nav-wraper">
-  <h1 class=" center"> Hello Student.name !</h1>
-</nav>
-<div class="row">
-  <div class="col s3">
-    <a href="/" >
-      <div class="card blue  darken-4 ">
-        <div class="card-content white-text">
-          <span class="card-title">Create Playlist</span>
-          <p>Click this card to create your own playlist of coding lessons!</p>
-        </div>
-      </div>
-    </a>
-    <a href="/" >
-      <div class="card blue  darken-4 ">
-        <div class="card-content white-text">
-          <span class="card-title">Your Playlists</span>
-          <p>Click this card to manage your  playlist of coding lessons!</p>
-        </div>
-      </div>
-    </a>
-    <a href="/" >
-      <div class="card blue  darken-4 ">
-        <div class="card-content white-text">
-          <span class="card-title">Favorite Playlists</span>
-          <p>Click this card to look at your favorite playlists!</p>
-        </div>
-      </div>
-    </a>
-    <a href="/" >
-      <div class="card blue  darken-4 ">
-        <div class="card-content white-text">
-          <span class="card-title">Manage lessons</span>
-          <p>Click this card to create and manage your lessons!</p>
-        </div>
-      </div>
-    </a>
-  </div>
+
 <div class="col s9">
-  <form>
-    <div class="input-field">
-      <input id="search" type="search" required>
-      <label for="search"><i class="material-icons">search</i></label>
-      <i class="material-icons">close</i>
-    </div>
-  </form>
     <div class="row">
       <div class="col 9">
+        <h3>Here are the current lessons in the database:</h3>
         <% if @lessons.any? %>
         <ul>
           <% @lessons.each do |lesson| %>
-          <a href ="/lessons/<%= lesson.id %>"<li> <%=lesson.title %> </li></a>
+          <a href ="/lessons/<%= lesson.id %>"><li> <%=lesson.title %> </li></a>
           <%end%>
         </ul>
         <%else%>

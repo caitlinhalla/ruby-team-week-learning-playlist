@@ -1,0 +1,35 @@
+<%= erb(:_playlist_content)%>
+
+<h1>Update <%= @playlist.name %></h1>
+<form action="/playlists/<%= @playlist.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for="playlist_name">Update playlist name:</label>
+  <input id="playlist_name" name="playlist_name" type="text" value="<%=@playlist.name%>">
+  <input name="_method" type="hidden" value="patch">
+  <label for="new_playlist_description">Update playlist description:</label>
+  <input id="new_playlist_description" name="new_playlist_description" type="text" value="<%=@playlist.description%>">
+  <input type="date" class="datepicker" name="new_due_date" placeholder="Click to Enter Due Date" value="<%=@playlist.due_date%>">
+  <button type="submit" class="btn btn-success">Update</button>
+</form>
+
+<form action="/playlists/<%= @playlist.id() %>" method="post"  id="delete-button">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit" class="btn btn-success">Delete Playlist</button>
+</form>
+
+<div id="add_lesson_to_playist_form">
+  <h3>Add a lesson to this playlist!</h3>
+  <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <input type="hidden" name="playlist_id" id="playlist_id" value="<%= @playlist.id() %>">
+  <br>
+    <select id="lesson_id" name="lesson_id">
+      <% @playlist.lessons.each() do |lesson| %>
+      <option value="<%= lesson.id() %>"><%= lesson.title() %></option>
+      <% end %>
+    </select>
+    <label for="lesson_id">Select a lesson:</label>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<a href = '/dashboard'>Home</a>

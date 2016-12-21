@@ -1,22 +1,36 @@
-<nav class="teal">
-  <div class="nav-wrapper">
-    <ul id="nav-mobile" class="left">
-      <li><a href="/">Home</a></li>
-      <% if @user %>
-        <li><a href="/dashboard">Dashboard</a></li>
-        <li><a href="/playlists">Playlists</a></li>
-        <li><a href="/lessons">Lessons</a></li>
-      <% end %>
-    </ul>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-    <li><a href="/protected">Protected Page</a></li>
-      <% if @user %>
-        <li><a href="/account">Account</a></li>
-        <li><a href="/auth/logout">Log Out</a></li>
-      <% else %>
-        <li><a href="/auth/login">Log In</a></li>
-        <li><a href="/auth/register">Register</a></li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+  <nav class="blue-grey darken-3">
+    <div class="navbar-wrapper">
+      <a href="#" class="brand-logo"><img class="responsive-img" src='/img/logo.png'></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <% if @user %>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/playlists">Playlists</a></li>
+          <li><a href="/lessons">Lessons</a></li>
+        <% end %>
+      </ul>
+      <ul id="nav-mobile-account" class="right hide-on-med-and-down">
+      <li><a href="/protected">Protected Page</a></li>
+        <% if @user %>
+          <li><a href="/account">Account</a></li>
+          <li><a href="/auth/logout">Log Out</a></li>
+        <% else %>
+          <li><a href="/auth/login">Log In</a></li>
+          <li><a href="/auth/register">Register</a></li>
+        <% end %>
+      </ul>
+
+      <ul class="side-nav" id="mobile-demo">
+       <li><a href="/">Home</a></li>
+       <li><a href="/dashboard">Dashboard</a></li>
+       <li><a href="/playlists">Playlist</a></li>
+       <li><a href="/lessons">Lessons</a></li>
+       <li><a href="/protected">Protected Page</a></li>
+       <li><a href="/account">Account</a></li>
+       <li><a href="/auth/login">Log Out</a></li>
+       <li><a href="/auth/register">Register</a></li>
+     </ul>
+
+    </div>
+  </nav>

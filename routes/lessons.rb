@@ -47,6 +47,7 @@ delete('/lessons/:lesson_id/tags/:id') do
   lesson = Lesson.find(params.fetch('lesson_id').to_i)
   tag = Tag.find(params.fetch('id').to_i)
   lesson.tags.destroy(tag)
+  # check project tags, too
   if tag.lessons.empty?
     tag.destroy
   end

@@ -1,8 +1,11 @@
 $(document).ready(function() {
-$('.datepicker').pickadate({
-  selectMonths: true,
-  selectYears: 15
-})
+  $(".button-collapse").sideNav();
+  $('.datepicker').pickadate({
+    selectMonths: true,
+    selectYears: 15
+  })
+
+  $('select').material_select();
 });
 
 function editMode() {
