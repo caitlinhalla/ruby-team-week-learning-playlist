@@ -37,6 +37,12 @@
 <% unless @lesson.tags.empty? %>
 <h5>Tags:</h5>
 <% @lesson.tags.each do |tag| %>
+  <div class="edit-mode hidden inline">
+    <form action="/lessons/<%= @lesson.id %>/tags/<%= tag.id %>" method="post" class="inline">
+      <input type="hidden" name="_method" value="delete">
+      <button class="btn red small-round" id="tag-remove-<%= tag.id %>"><i class="tiny material-icons">delete</i></button>
+    </form>
+  </div>
  <span class="chip teal white-text"><%= tag.name %></span>
 <%end%>
 <%end%>
