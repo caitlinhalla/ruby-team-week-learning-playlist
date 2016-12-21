@@ -1,7 +1,4 @@
-require('capybara/rspec')
-require('./app')
-Capybara.app = Sinatra::Application
-set(:show_exceptions, false)
+require('spec_helper')
 
 describe('the add lesson path', {:type => :feature}) do
   it ('it will allow the user to add a lesson to the database') do

@@ -4,3 +4,7 @@ $('.datepicker').pickadate({
   selectYears: 15
 })
 });
+
+function editMode() {
+  $('.edit-mode').toggleClass('hidden');
+}

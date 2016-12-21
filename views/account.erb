@@ -1,0 +1,14 @@
+<div class="card teal white-text">
+  <div class="card-content">
+    <span class="card-title"><%= @user.username %></span>
+    <div class="stats">
+      <p>Playlists: 0</p>
+      <p>Lessons: 0</p>
+    </div>
+    <button class="btn blue" onclick="editMode()">Edit</button>
+    <form action="/auth/delete" method="post" class="delete-button">
+      <input type="hidden" name="_method" value="delete">
+      <button class="red btn edit-mode hidden">Delete My Account</button>
+    </form>
+  </div>
+</div>
