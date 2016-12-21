@@ -1,3 +1,20 @@
+<h2>Current playlist: <%= @playlist.name %></h2>
+<h4>Description </h4>
+<p><%= @playlist.description %></p>
+<h5>Lessons Within this playlist</h5>
+<%if @playlist.lessons.any?%>
+<ul>
+  <%@playlists.lessons.each do |lesson| %>
+  <li> <a href ="/lessons/<%= lesson.id %>"><%= lesson.name %></li></a>
+  <% end %>
+</ul>
+<h5>Source:</h5>
+<h6><%= lesson.external_link %></h6>
+<% else %>
+<p>There are currently no lessons in this playlist. Use the dropdown below to add a lesson.</p>
+<% end %>
+
+
 <h1>Update <%= @playlist.name %></h1>
 <form action="/playlists/<%= @playlist.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
@@ -13,5 +30,7 @@
   <input name="_method" type="hidden" value="delete">
   <button type="submit" class="btn btn-success">Delete Playlist</button>
 </form>
+
+
 
 <a href = '/dashboard'>Home</a>

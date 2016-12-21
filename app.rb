@@ -19,12 +19,8 @@ register Sinatra::Flash
 set :session_secret, "supersecret"
 require('./helpers/session')
 
-if User.all.length == 0
-  User.create({:username => "krieger", :password => "guest"})
-end
-
 before do
-  @user = env['warden'].user
+  @user = env['warden'].user rescue env['warden'].logout
 end
 
 get('/') do
@@ -102,8 +98,8 @@ end
 post('/playlists/new') do
   name = params.fetch('playlist_name')
   due_date = params.fetch('due_date')
-  is_private = params.has_key?('private')
-  @playlist = Playlist.create({:name => name, :due_date => due_date, :is_private => is_private})
+  is_it_private = params.has_key?('private')
+  @playlist = Playlist.create({:name => name, :due_date => due_date, :is_private => is_it_private})
   @playlists = Playlist.all
   redirect('/dashboard')
 end
@@ -115,6 +111,7 @@ end
 
 get('/playlists/:id/edit') do
   @playlist = Playlist.find(params.fetch('id').to_i)
+  @lessons = @playlist.lessons
   erb(:playlist_edit)
 end
 
