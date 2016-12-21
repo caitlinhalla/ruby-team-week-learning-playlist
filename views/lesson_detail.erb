@@ -8,25 +8,25 @@
 <p><%= @lesson.is_private %></p>
 <hr>
 <form class="" action="/lessons/<%=@lesson.id%>" method="post">
-<input type="hidden" name="_method" value="patch">
-<div class="input-field col s12">
-<input placeholder="" id="lesson_title" name="lesson_title" value="<%=@lesson.title%>" type="text" class="validate">
-  <label for="lesson_title">Lesson Title</label>
-</div>
-<div class="input-field col s12">
-<input placeholder='Enter Lesson Description' id='lesson_description' name="lesson_description" value="<%=@lesson.description%>" type='text' class='validate'>
-  <label for='lesson_description'>Lesson Description</label>
-</div>
-<div class='input-field col s12'>
-<input placeholder='Enter content link' id='external_link' value="<%=@lesson.external_link%>" type='text' name="external_link" class='validate'>
-  <label for='external_link'>Link to Lesson Content</label>
-</div>
-<div class='input-field col s6'>
-<input value="<%=@lesson.is_private%>" type="checkbox" id="is_private" name="is_private">
-  <label for="is_private">Private Lesson</label>
-</div>
-<br>
-<button type='submit' class='btn btn-success'>Update Lesson</button>
+  <input type="hidden" name="_method" value="patch">
+  <div class="input-field col s12">
+    <input placeholder="" id="lesson_title" name="lesson_title" value="<%=@lesson.title%>" type="text" class="validate">
+    <label for="lesson_title">Lesson Title</label>
+  </div>
+  <div class="input-field col s12">
+    <input placeholder='Enter Lesson Description' id='lesson_description' name="lesson_description" value="<%=@lesson.description%>" type='text' class='validate'>
+    <label for='lesson_description'>Lesson Description</label>
+  </div>
+  <div class='input-field col s12'>
+  <input placeholder='Enter content link' id='external_link' value="<%=@lesson.external_link%>" type='text' name="external_link" class='validate'>
+    <label for='external_link'>Link to Lesson Content</label>
+  </div>
+  <div class='input-field col s6'>
+  <input value="<%=@lesson.is_private%>" type="checkbox" id="is_private" name="is_private">
+    <label for="is_private">Private Lesson</label>
+  </div>
+  <br>
+  <button type='submit' class='btn btn-success'>Update Lesson</button>
 </form>
 
 <form class="" action="/lessons/<%=@lesson.id%>" method="post">
@@ -47,7 +47,7 @@
 <%end%>
 <%end%>
 
-<div id="add-tags" class="edit-mode hidden card blue-grey lighten-3 white-text">
+<div id="add-tags" class="edit-mode card blue-grey lighten-3 white-text">
   <div class="card-content">
     <h5>Add Tags</h5>
     <form action="/lessons/<%= @lesson.id %>/tags" method="post">
