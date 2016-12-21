@@ -1,27 +1,17 @@
-require("sinatra")
-require("sinatra/reloader")
-require('sinatra/activerecord')
-also_reload("lib/**/*.rb")
-require("pg")
-require('./lib/user')
+require("bundler/setup")
+Bundler.require(:default)
+
 require('./lib/playlist')
-require('pry')
-require('./lib/student')
 require('./lib/user')
 require('./lib/tag')
 require('./lib/lesson')
-require('warden')
-require('sinatra/flash')
+
 
 
 enable :sessions
 register Sinatra::Flash
 set :session_secret, "supersecret"
 require('./helpers/session')
-
-if User.all.length == 0
-  User.create({:username => "krieger", :password => "guest"})
-end
 
 before do
   @user = env['warden'].user

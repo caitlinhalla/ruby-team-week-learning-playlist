@@ -1,6 +1,7 @@
 require('spec_helper')
 
 describe(User) do
+  it { should have_many(:playlists) }
   describe("authentication") do
     it("will create a user") do
       user = User.new(:username => "Krieger")

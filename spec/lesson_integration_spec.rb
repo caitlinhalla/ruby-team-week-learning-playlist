@@ -14,7 +14,7 @@ end
 
 describe('the view lesson details path', {:type => :feature}) do
   it ('will allow the user the view the details of specific lesson') do
-    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
     visit('/lessons')
     click_link('Zebra Scrubbing')
     expect(page).to have_content('A beginers guide')
@@ -23,7 +23,7 @@ end
 
 describe("update the lesson details", {:type => :feature}) do
   it('will allow the user to update individual details of a specific lesson') do
-    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
     visit('/lessons')
     click_link('Zebra Scrubbing')
     fill_in('lesson_title', :with => "How to Git Good")
@@ -37,7 +37,7 @@ end
 
 describe("delete single lesson", {:type => :feature}) do
   it("delete a lesson from the database") do
-    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
     visit('/lessons')
     click_link("Zebra Scrubbing")
     click_button('Delete')
@@ -62,7 +62,7 @@ end
 
 describe('the delete tag to a lesson path', {:type => :feature}) do
   it ('it will allow the user to delete a tag from an existing lesson') do
-  test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+  test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
      test_tag = Tag.create({:name => "meat"})
      test_lesson.tags.push(test_tag)
      visit "/lessons/#{test_lesson.id}"
@@ -72,7 +72,7 @@ describe('the delete tag to a lesson path', {:type => :feature}) do
    end
 
   it "deletes the tag if it has no remaining lessons" do
-    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
     test_tag = Tag.create({:name => "cool"})
     test_lesson.tags.push(test_tag)
     visit "/lessons/#{test_lesson.id}"
@@ -82,7 +82,7 @@ describe('the delete tag to a lesson path', {:type => :feature}) do
 
 
   it "deletes the tag if it has no remaining recipes" do
-    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :tag_id => nil, :external_link => 'link', :is_private => false})
+    test_lesson = Lesson.create({:title => "Zebra Scrubbing", :description => "A beginers guide", :external_link => 'link', :is_private => false})
     test_tag = Tag.create({:name => "cool"})
     test_lesson.tags.push(test_tag)
     visit "/lessons/#{test_lesson.id}"
