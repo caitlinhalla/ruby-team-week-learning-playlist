@@ -8,5 +8,9 @@
 }
 
 .hidden {
-  display:hidden;
+  display:none;
+}
+
+.delete-button {
+  margin-top: 10px;
 }

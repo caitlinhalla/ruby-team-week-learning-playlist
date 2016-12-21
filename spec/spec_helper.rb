@@ -19,5 +19,6 @@ RSpec.configure do |config|
     Lesson.all.each(&:destroy)
     Playlist.all.each(&:destroy)
     Student.all.each(&:destroy)
+    User.all.each(&:destroy)
   end
 end

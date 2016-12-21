@@ -154,11 +154,22 @@ post '/auth/register' do
     flash[:error] = "Your passwords must match"
     redirect '/'
   end
+end
 
+delete '/auth/delete' do
+  env['warden'].authenticate!
+  env['warden'].logout
+  User.find_by_username(@user.username).destroy
+  flash[:success] = "Account Deleted."
+  redirect '/'
 end
 
 get '/protected' do
   env['warden'].authenticate!
   @user = env['warden'].user
   erb :protected
+end
+
+get '/account' do
+  erb(:account)
 end

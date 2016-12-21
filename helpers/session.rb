@@ -33,7 +33,7 @@ Warden::Strategies.add(:password) do
     elsif user.authenticate(params['user']['password'])
       success!(user)
     else
-      throw(:warden, :message => "The username and password combination")
+      throw(:warden, :message => "The username and password combination you entered is invalid.")
     end
   end
 end
