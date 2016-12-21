@@ -19,12 +19,12 @@
 
 <div id="add_lesson_to_playist_form">
   <h3>Add a lesson to this playlist!</h3>
-  <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/edit" method="post">
+  <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">
     <input name="_method" type="hidden" value="patch">
     <input type="hidden" name="playlist_id" id="playlist_id" value="<%= @playlist.id() %>">
   <br>
     <select id="lesson_id" name="lesson_id">
-      <% @lessons.each() do |lesson| %>
+      <% @playlist.lessons.each() do |lesson| %>
       <option value="<%= lesson.id() %>"><%= lesson.title() %></option>
       <% end %>
     </select>

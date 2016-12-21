@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20161221191339) do
     t.text    "description"
     t.string  "external_link"
     t.boolean "complete"
-    t.integer "tag_id"
     t.boolean "is_private"
   end
 
@@ -37,21 +36,19 @@ ActiveRecord::Schema.define(version: 20161221191339) do
   create_table "playlists", force: :cascade do |t|
     t.string   "name"
     t.datetime "due_date"
-    t.string   "tag"
     t.boolean  "complete"
-    t.integer  "student_id"
     t.boolean  "is_private"
+    t.integer  "user_id"
     t.string   "description"
   end
 
-  create_table "students", force: :cascade do |t|
-    t.string  "name"
-    t.boolean "guardian_status"
+  create_table "playlists_tags", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.integer "tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name"
-    t.integer "lesson_id"
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

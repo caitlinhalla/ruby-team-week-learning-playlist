@@ -1,5 +1,6 @@
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many(:lessons)
+  has_and_belongs_to_many(:playlists)
 
   class << self
      def make_all(list)

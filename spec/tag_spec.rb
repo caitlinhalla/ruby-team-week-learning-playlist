@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe(Tag) do
-    it {belong_to(:lessons)}
+    it { should have_and_belong_to_many(:lessons) }
+    it { should have_and_belong_to_many(:playlists) }
 end
 
   describe '.make_all' do
