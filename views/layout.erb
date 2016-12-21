@@ -6,11 +6,12 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <link rel="stylesheet" href="/css/main.css">
 </head>
-<body class="blue lighten-3">
+<body class="grey lighten-4">
 
 
+<%= erb :_navbar %>
+<%= erb :_sidebar %>
 <div class="container">
-  <%= erb :_navbar %>
   <%= erb :_flash %>
   <%= yield %>
 </div>
