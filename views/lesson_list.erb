@@ -49,7 +49,7 @@
         <% if @lessons.any? %>
         <ul>
           <% @lessons.each do |lesson| %>
-          <a href ="/dashboard/lesson_detail/<%= lesson.id %>"<li> <%=lesson.title %> </li></a>
+          <a href ="/lessons/<%= lesson.id %>"<li> <%=lesson.title %> </li></a>
           <%end%>
         </ul>
         <%else%>

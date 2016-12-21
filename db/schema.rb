@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220233105) do
+ActiveRecord::Schema.define(version: 20161221000153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20161220233105) do
     t.integer "playlist_id"
   end
 
+  create_table "lessons_tags", force: :cascade do |t|
+    t.integer "lesson_id"
+    t.integer "tag_id"
+  end
+
   create_table "playlists", force: :cascade do |t|
     t.string   "name"
     t.datetime "due_date"
@@ -44,7 +49,8 @@ ActiveRecord::Schema.define(version: 20161220233105) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "lesson_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -7,9 +7,12 @@ require('./lib/user')
 require('./lib/playlist')
 require('pry')
 require('./lib/student')
+require('./lib/user')
+require('./lib/tag')
 require('./lib/lesson')
 require('warden')
 require('sinatra/flash')
+
 
 enable :sessions
 register Sinatra::Flash
@@ -33,40 +36,63 @@ get('/dashboard') do
   erb(:student_dashboard)
 end
 
-get('/dashboard/lessons') do
+get('/lessons') do
   @lessons = Lesson.all
   erb(:lesson_list)
 end
 
-get('/dashboard/lesson_detail/:id') do
+get('/lessons/:id') do
   @lesson = Lesson.find(params.fetch('id').to_i)
+  @tags = Tag.all()
+
   erb(:lesson_detail)
 end
 
-post('/dashboard/lessons') do
+post('/lessons') do
   title = params.fetch('lesson_title')
   description = params.fetch('lesson_description')
   link = params.fetch('external_link')
   is_private = params.has_key?('is_private')
   @lesson = Lesson.create({:title => title, :description => description, :external_link => link, :is_private => is_private})
-  redirect '/dashboard/lessons'
+  redirect '/lessons'
 end
 
-patch('/dashboard/lessons/:id') do
+patch('/lessons/:id') do
   @lesson = Lesson.find(params.fetch('id').to_i)
   title = params.fetch('lesson_title')
   description = params.fetch('lesson_description')
   link = params.fetch('external_link')
   is_private = params.has_key?('is_private')
   @lesson.update({:title => title, :description => description, :external_link => link, :is_private => is_private})
-  redirect "/dashboard/lesson_detail/#{params.fetch('id').to_i}"
+  redirect "/lessons/#{params.fetch('id').to_i}"
 end
 
-delete('/dashboard/lessons/:id') do
+delete('/lessons/:id') do
   @lesson = Lesson.find(params.fetch('id').to_i)
   @lesson.destroy()
   @lessons = Lesson.all()
-  redirect '/dashboard/lessons'
+  redirect '/lessons'
+end
+
+post('/lessons/:id/tags') do
+  @lesson = Lesson.find(params.fetch('id').to_i)
+  new_tags = params.fetch('new-tags')
+  Tag.make_all(new_tags).each do |tag|
+    unless @lesson.tags.find_by_name(tag.name)
+      @lesson.tags.push(tag)
+    end
+  end
+  redirect "/lessons/#{params.fetch('id').to_i}"
+end
+
+delete('/lessons/:lesson_id/tags/:id') do
+  lesson = Lesson.find(params.fetch('lesson_id').to_i)
+  tag = Tag.find(params.fetch('id').to_i)
+  lesson.tags.destroy(tag)
+  if tag.lessons.empty?
+    tag.destroy
+  end
+  redirect("/lessons/#{lesson.id}")
 end
 
 get('/playlists/new') do
