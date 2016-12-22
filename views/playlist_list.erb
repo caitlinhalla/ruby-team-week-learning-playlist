@@ -1,5 +1,5 @@
 <% if @playlists.any? %>
-  <h1>Your Playlists: </h1>
+  <h1>Your Playlists</h1>
   <ul class='row'>
     <% @playlists.each do |playlist| %>
       <%= erb(:_playlist_card, :locals => {:playlist => playlist}) %>

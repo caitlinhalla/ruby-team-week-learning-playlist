@@ -108,3 +108,28 @@ h3, h4, h5 {
 img {
   object-fit: cover;
 }
+
+.lesson-card {
+  min-height: 160px
+}
+.title-bar {
+    position: relative;
+}
+
+.headspace {
+  margin-top: 20px;
+}
+
+.fixed-action-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.fixed-action-btn.horizontal ul li {
+    margin: 0 6px 0 0;
+}
+
+.fixed-action-btn.horizontal ul {
+    right: 44px;
+}

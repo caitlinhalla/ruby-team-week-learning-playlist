@@ -1,9 +1,39 @@
-<h2>Current playlist: <%= @playlist.name %></h2>
+
+<div class="title-bar">
+  <h2>Playlist: <%= @playlist.name %></h2>
+  <div class="fixed-action-btn horizontal">
+    <a class="btn-floating blue-grey small tooltipped"
+      data-position="top" data-delay="20" data-tooltip="Options"
+      ><i class="material-icons">settings</i></a>
+    <ul>
+
+      <li><a class="btn-floating deep-purple tooltipped"
+             data-position="top" data-delay="20" data-tooltip="Search Lessons"
+             href="/playlists/<%= @playlist.id %>/lessons/search">
+             <i class="material-icons">search</i></a></li>
+
+      <li><a class="btn-floating indigo tooltipped" onclick="editMode()"
+             data-position="top" data-delay="20" data-tooltip="Edit Playlist"
+             ><i class="material-icons">edit</i></a></li>
+
+      <li><a class="btn-floating green tooltipped" onclick="addMode()"
+             data-position="top" data-delay="20" data-tooltip="Add Lesson"
+             ><i class="material-icons">add</i></a></li>
+
+      <li><a class="btn-floating blue tooltipped" onclick="tagMode()"
+            data-position="top" data-delay="20" data-tooltip="Edit Tags"
+            ><i class="material-icons">label</i></a></li>
+    </ul>
+  </div>
+</div>
+
 <%= erb(:_tag_display, :locals => {:object => @playlist, :parent_table => "playlists"}) %>
 <%= erb(:_tag_form, :locals => {:object => @playlist, :parent_table => "playlists"}) %>
-<h4>Description </h4>
-<p><%= @playlist.description %></p>
-<h5>Lessons Within this playlist</h5>
+
+<h5>Description: <%= @playlist.description %> </h5>
+<h6>Due: <%=@playlist.due_date %></h6>
+
+<h5 class="blue-grey-text headspace">Lessons Within this playlist</h5>
 <% if @playlist.lessons.any?%>
   <div class="row">
     <% @playlist.lessons.each do |lesson| %>
@@ -15,9 +45,7 @@
 <% else %>
   <p>There are currently no lessons in this playlist. Use the dropdown below or the search function to add a lesson.</p>
 <% end %>
-<a href="/playlists/<%= @playlist.id %>/lessons/search" class="btn btn purple">Search Lessons</a>
-<h4>Due Date</h4>
-<h6><%=@playlist.due_date %></h6>
+
 <form class="edit-mode hidden" action="/playlists/<%= @playlist.id() %>" method="post">
   <h1>Update <%= @playlist.name %></h1>
   <input name="_method" type="hidden" value="patch">
@@ -29,15 +57,13 @@
   <input type="date" class="datepicker" name="new_due_date" placeholder="Click to Enter Due Date" value="<%=@playlist.due_date%>">
   <button type="submit" class="btn center btn-success">Update</button>
 </form>
+
 <form class="edit-mode hidden" action="/playlists/<%= @playlist.id() %>" method="post"  id="delete-button">
   <input name="_method" type="hidden" value="delete">
   <button type="submit" class="btn  red">Delete Playlist</button>
 </form>
-<button class="edit-mode btn cyan darken-2" onclick="editMode()">Edit</button>
-<button class="edit-mode btn cyan darken-2 hidden left" onclick="editMode()">Back</button>
-<br>
-<br>
-<div id="add_lesson_to_playist_form">
+
+<div id="add_lesson_to_playist_form" class="add-mode hidden">
   <h4>Add a lesson to this playlist</h4>
   <% if @lessons.any? %>
     <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">

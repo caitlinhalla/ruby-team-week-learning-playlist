@@ -15,3 +15,7 @@ function editMode() {
 function addMode() {
   $('.add-mode').toggleClass('hidden')
 };
+
+function tagMode() {
+  $('.tag-mode').toggleClass('hidden')
+};
