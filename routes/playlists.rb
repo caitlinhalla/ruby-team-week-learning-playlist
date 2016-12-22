@@ -4,12 +4,19 @@ post('/playlists') do
   due_date = params.fetch('due_date')
   is_private = params.has_key?('private')
   playlist = Playlist.create({:name => name, :description => description, :due_date => due_date, :is_private => is_private})
+  if playlist.save
   new_tags = params.fetch('new-tags')
   Tag.make_all(new_tags).each do |tag|
     playlist.tags.push(tag)
   end
   env['warden'].user.playlists.push(playlist) if env['warden'].user
+
   redirect "/playlists/#{playlist.id}"
+  else
+      flash[:error] = "Name and Description cannot be blank!"
+      redirect "/playlists"
+
+  end
 end
 
 get('/playlists') do
