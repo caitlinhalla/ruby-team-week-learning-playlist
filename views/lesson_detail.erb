@@ -1,6 +1,6 @@
 <h1><%= @lesson.title  %></h1>
-
 <%= erb(:_tag_display, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
+
 <h5>Description: <%= @lesson.description %> </h5>
 <p><%= @lesson.external_link %></p>
 <h3>View Status:</h3>
@@ -40,6 +40,7 @@
   <input type="hidden" name="_method" value="delete">
   <button type="submit" class="btn red right" name="button">Delete</button>
 </form>
+
 <button class="edit-mode btn purple" onclick="editMode()">Edit</button>
 <button class="edit-mode btn purple hidden left" onclick="editMode()">Back</button>
 <br>

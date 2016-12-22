@@ -63,3 +63,20 @@ body {
 .checkbox {
   padding-top: 20px;
 }
+
+.add-chip {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 30px;
+    width: 30px;
+    padding: 0 6px;
+    line-height: 18px;
+    z-index: 100;
+    cursor: pointer;
+    border: 0;
+}
+
+.anchor {
+  position: relative;S
+}

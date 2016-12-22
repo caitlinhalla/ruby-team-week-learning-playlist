@@ -5,8 +5,16 @@ class Lesson < ActiveRecord::Base
 
   after_initialize(:init)
 
+  scope(:all_public, -> { where({:is_private => false}) })
+
+
   def init
     self.is_private = false if self.is_private.nil?
     self.complete = false if self.complete.nil?
+  end
+  class << self
+    def all_links
+      all.map(&:external_link)
+    end
   end
 end

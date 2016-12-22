@@ -36,6 +36,9 @@ post '/auth/register' do
     if User.find_by_username(params['user']['username'])
       flash[:error] = "A user with that username already exists"
       redirect '/'
+    elsif params['user']['password'].length < 4
+      flash[:error] = "Please enter a password of at least 4 characters"
+      redirect '/'
     else
       User.create({:username => params['user']['username'], :password => params['user']['password']})
       env['warden'].authenticate!

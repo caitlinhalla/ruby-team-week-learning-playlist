@@ -4,7 +4,7 @@ $(document).ready(function() {
     selectMonths: true,
     selectYears: 15
   })
-
+  $('.tooltipped').tooltip({delay: 50});
   $('select').material_select();
 });
 

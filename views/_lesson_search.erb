@@ -1,0 +1,14 @@
+<h1>Add lessons to <%= @playlist.name %></h1>
+<p><a href="/playlists/<%= @playlist.id %>">Back to Playlist</a></p>
+<div class="row">
+  <% @public_lessons.each do |lesson| %>
+    <div class="card-container col l6 m12 anchor">
+      <%= erb(:_lesson_card, :locals => {:lesson => lesson}) %>
+      <form action="/playlists/<%= @playlist.id %>/lessons/clone" method="post">
+        <input type="hidden" name="lesson_id" value="<%= lesson.id %>">
+        <button type="submit" class="btn chip add-chip green white-text tooltipped"
+          data-position="top" data-delay="20" data-tooltip="add to playlist">+</button>
+      </form>
+    </div>
+  <% end %>
+</div>

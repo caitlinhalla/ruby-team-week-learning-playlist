@@ -1,4 +1,23 @@
-<%= erb(:_playlist_content)%>
+<h2>Current playlist: <%= @playlist.name %></h2>
+<%= erb(:_tag_display, :locals => {:object => @playlist, :parent_table => "playlists"}) %>
+
+<h4>Description </h4>
+<p><%= @playlist.description %></p>
+<h5>Lessons Within this playlist</h5>
+<%if @playlist.lessons.any?%>
+  <div class="row">
+    <% @playlist.lessons.each do |lesson| %>
+      <div class="card-container col l6 m12 anchor">
+        <%= erb(:_lesson_card, :locals => {:lesson => lesson}) %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>There are currently no lessons in this playlist. Use the dropdown below to add a lesson.</p>
+<% end %>
+
+<h5>Due Date</h5>
+<h6><%=@playlist.due_date %></h6>
 
 
 <form class="edit-mode hidden" action="/playlists/<%= @playlist.id() %>" method="post">
@@ -17,35 +36,14 @@
   <input name="_method" type="hidden" value="delete">
   <button type="submit" class="btn  red right">Delete Playlist</button>
 </form>
-<div id="add-tags" class="edit-mode hidden card blue-grey lighten-3 white-text">
-  <div class="card-content">
-    <h5>Add Tags</h5>
-    <form action="/playlists/<%= @playlist.id %>/tags" method="post">
-      <div class="form-group">
-        <label for="new-tags" class="black-text">Enter Tags (comma separated)</label>
-        <input type="text" name="new-tags" id="new-tags">
-      </div>
-      <button class="btn blue">Add Tags!</button>
-    </form>
-  </div>
-</div>
+
+<a href="/playlists/<%= @playlist.id %>/lessons/search" class="btn btn purple">Search Lessons</a>
+
 <button class="edit-mode btn purple" onclick="editMode()">Edit</button>
 <button class="edit-mode btn purple hidden left" onclick="editMode()">Back</button>
 <br>
 <br>
-<% unless @playlist.tags.empty? %>
-<br>
-<h5>Tags:</h5>
-<% @playlist.tags.each do |tag| %>
-<div class="edit-mode hidden inline">
-  <form action="/playlists/<%= @playlist.id %>/tags/<%= tag.id %>" method="post" class="inline">
-    <input type="hidden" name="_method" value="delete">
-    <button class="btn red small-round" id="tag-remove-<%= tag.id %>"><i class="tiny material-icons">delete</i></button>
-  </form>
-</div>
-<span class="chip teal white-text"><%= tag.name %></span>
-<% end %>
-<% end %>
+
 <div id="add_lesson_to_playist_form">
   <h3>Add a lesson to this playlist!</h3>
   <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">
@@ -61,3 +59,5 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
+
+<%= erb(:_tag_form, :locals => {:object => @playlist, :parent_table => "playlists"}) %>

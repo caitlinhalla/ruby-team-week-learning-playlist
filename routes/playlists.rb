@@ -39,7 +39,7 @@ patch("/playlists/:id/lessons/add") do
   lesson = Lesson.find(params.fetch("lesson_id").to_i)
   playlist = Playlist.find(params.fetch("id").to_i)
   playlist.lessons.push(lesson)
-  redirect "/playlists"
+  redirect "/playlists/#{playlist.id}"
 end
 
 delete('/playlists/:id') do
@@ -56,4 +56,27 @@ post('/playlists/:id/tags') do
     end
   end
   redirect "/playlists/#{params.fetch('id').to_i}"
+end
+
+get('/playlists/:id/lessons/search') do
+  @playlist = Playlist.find(params.fetch('id').to_i)
+  @public_lessons = Lesson.all_public.to_a.delete_if{|lesson|
+    @playlist.lessons.all_links.include?(lesson.external_link)
+  }
+  erb(:_lesson_search)
+end
+
+
+post("/playlists/:id/lessons/clone") do
+  playlist = Playlist.find(params.fetch("id").to_i)
+  template_lesson = Lesson.find(params.fetch("lesson_id").to_i)
+  new_lesson = Lesson.new({
+    :title => template_lesson.title,
+    :description => template_lesson.description,
+    :external_link => template_lesson.external_link,
+    :is_private => true
+  })
+  @user.lessons.push(new_lesson)
+  playlist.lessons.push(new_lesson)
+  redirect "/playlists/#{playlist.id}/lessons/search"
 end

@@ -6,7 +6,9 @@
         <% if @lessons.any? %>
         <ul>
           <% @lessons.each do |lesson| %>
-          <a href ="/lessons/<%= lesson.id %>"><li> <%=lesson.title %> </li></a>
+          <div class="card-container col l6 m12 anchor">
+            <%= erb(:_lesson_card, :locals => {:lesson => lesson}) %>
+          </div>
           <%end%>
         </ul>
         <%else%>
