@@ -40,9 +40,8 @@
   <input type="hidden" name="_method" value="delete">
   <button type="submit" class="btn red right" name="button">Delete</button>
 </form>
-<button class="edit-mode btn purple" onclick="editMode()">Edit</button>
 <button class="edit-mode btn purple hidden left" onclick="editMode()">Back</button>
 <br>
-<button class="btn blue" onclick="editMode()">Edit Mode</button>
+<button class="btn blue edit-mode" onclick="editMode()">Edit Mode</button>
 
 <%= erb(:_tag_form, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
