@@ -48,6 +48,7 @@
 <% end %>
 <div id="add_lesson_to_playist_form">
   <h3>Add a lesson to this playlist!</h3>
+    <% if @lessons.any? %>
   <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">
     <input name="_method" type="hidden" value="patch">
     <input type="hidden" name="playlist_id" id="playlist_id" value="<%= @playlist.id() %>">
@@ -60,4 +61,8 @@
     <label for="lesson_id">Select a lesson:</label>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+  <% else %>
+  <p> There are no lessons to add. Make some! </p>
+    <button class ="cyan" name="button"><a href="/lessons">Go to Lessons page!</a></button>
+  <% end %>
 </div>
