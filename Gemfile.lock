@@ -113,3 +113,6 @@ DEPENDENCIES
   sinatra-contrib
   sinatra-flash (= 0.3.0)
   warden
+
+BUNDLED WITH
+   1.13.6

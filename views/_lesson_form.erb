@@ -26,6 +26,12 @@
         <label for="is_private">Private Lesson</label>
       </div>
     </div>
+    <select id="playlist_id" name="playlist_id">
+      <% @playlists.each() do |playlist| %>
+      <option value="<%= playlist.id() %>"><%= playlist.name() %></option>
+      <% end %>
+    </select>
+    <label for="playlist_id">Select a playlist:</label>
     <br>
     <button type='submit' class='btn btn-success'>Submit Lesson</button>
   </form>

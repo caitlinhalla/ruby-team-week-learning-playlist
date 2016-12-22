@@ -18,6 +18,7 @@ end
 
 get('/playlists/:id') do
   @playlist = Playlist.find(params.fetch('id').to_i)
+  @lessons = Lesson.all
   erb(:playlist_detail)
 end
 
