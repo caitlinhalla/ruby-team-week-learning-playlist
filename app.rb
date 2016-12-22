@@ -1,6 +1,7 @@
 require("bundler/setup")
 Bundler.require(:default)
 require('./helpers/session')
+require('pry')
 
 require_all('lib')
 

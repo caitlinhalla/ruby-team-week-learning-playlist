@@ -18,6 +18,10 @@ post('/lessons') do
   playlist = Playlist.find(params.fetch('playlist_id').to_i)
   new_lesson = Lesson.create({:title => title, :description => description, :external_link => link, :is_private => is_private})
   new_lesson.playlists.push(playlist)
+  new_tags = params.fetch('new-tags')
+  Tag.make_all(new_tags).each do |tag|
+      new_lesson.tags.push(tag)
+  end
   redirect '/lessons'
 end
 
