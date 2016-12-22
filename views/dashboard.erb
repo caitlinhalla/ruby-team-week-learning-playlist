@@ -18,17 +18,20 @@
       </p>
       <% if @playlist.lessons.any? %>
         <% @playlist.lessons.each do |lesson| %>
-          <div class = 'card horizontal'>
-            <div class = 'card-image'>
-              <img src='/img/progress-bar.png'>
-            </div>
-            <div class = 'card-stacked'>
-              <div class='card-content'>
-                <h2><a href ="/lessons/<%= lesson.id %>" class="green-text accent-3"><%= lesson.title %></a></h2>
-                <p class='text-grey darken-2'>  <%= lesson.description %></p>
-              </div>
-            </div>
+        <div class = 'card horizontal'>
+        <div class = 'card-stacked'>
+          <div class='card-content'>
+            <h2><a href ="/dashboard" class="green-text accent-3">Lesson 2</a></h2>
+            <p class='text-grey darken-2'>  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <form action="#" class='checkbox'>
+              <p>
+                <input type="checkbox" id="lesson1" />
+                <label for="lesson1">Completed</label>
+              </p>
+            </form>
           </div>
+        </div>
+      </div>
         <% end %>
       <% else %>
         <div class = 'card horizontal'>
