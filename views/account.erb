@@ -1,11 +1,10 @@
-
-    <h2 class="card-title"><%= @user.username %></h2>
-    <div class="stats">
-      <p>Playlists: <%= @user.playlists.length %></p>
-      <p>Lessons: <%= @user.lessons.length %></p>
-    </div>
-    <button class="btn blue" onclick="editMode()">Edit</button>
-    <form action="/auth/delete" method="post" class="delete-button">
-      <input type="hidden" name="_method" value="delete">
-      <button class="red btn edit-mode hidden">Delete My Account</button>
-    </form>
+<h2 class="card-title"><%= @user.username %></h2>
+<div class="stats">
+  <p>Playlists: <%= @user.playlists.length %></p>
+  <p>Lessons: <%= @user.lessons.length %></p>
+</div>
+<button class="btn blue" onclick="editMode()">Edit</button>
+<form action="/auth/delete" method="post" class="delete-button">
+  <input type="hidden" name="_method" value="delete">
+  <button class="red btn edit-mode hidden">Delete My Account</button>
+</form>
