@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20161222021021) do
     t.datetime "due_date"
     t.boolean  "complete"
     t.boolean  "is_private"
-    t.string   "description"
     t.integer  "user_id"
+    t.string   "description"
   end
 
   create_table "playlists_tags", force: :cascade do |t|

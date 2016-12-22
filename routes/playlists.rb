@@ -14,7 +14,6 @@ end
 
 get('/playlists') do
   @playlists = Playlist.all
-
   @playlists = @user.playlists if env['warden'].user
   erb(:playlist_list)
 end

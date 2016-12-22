@@ -25,12 +25,12 @@
         <label for="new-tags" class="black-text">Enter Tags (comma separated)</label>
         <input type="text" name="new-tags" id="new-tags">
       </div>
-      <button class="btn blue">Add Tags!</button>
+      <button class="btn">Add Tags!</button>
     </form>
   </div>
 </div>
-<button class="edit-mode btn purple" onclick="editMode()">Edit</button>
-<button class="edit-mode btn purple hidden left" onclick="editMode()">Back</button>
+<button class="edit-mode btn cyan darken-2" onclick="editMode()">Edit</button>
+<button class="edit-mode btn cyan darken-2 hidden left" onclick="editMode()">Back</button>
 <br>
 <br>
 <% unless @playlist.tags.empty? %>
@@ -47,7 +47,7 @@
 <% end %>
 <% end %>
 <div id="add_lesson_to_playist_form">
-  <h3>Add a lesson to this playlist!</h3>
+  <h4>Add a lesson to this playlist</h4>
   <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">
     <input name="_method" type="hidden" value="patch">
     <input type="hidden" name="playlist_id" id="playlist_id" value="<%= @playlist.id() %>">
