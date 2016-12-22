@@ -1,4 +1,6 @@
 <h2>Current playlist: <%= @playlist.name %></h2>
+<%= erb(:_tag_display, :locals => {:object => @playlist, :parent_table => "playlists"}) %>
+
 <h4>Description </h4>
 <p><%= @playlist.description %></p>
 <h5>Lessons Within this playlist</h5>

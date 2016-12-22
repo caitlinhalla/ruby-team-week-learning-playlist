@@ -54,6 +54,16 @@ delete('/playlists/:id') do
   redirect('/playlists')
 end
 
+delete('/playlists/:playlist_id/tags/:id') do
+  playlist = Playlist.find(params.fetch('playlist_id').to_i)
+  tag = Tag.find(params.fetch('id').to_i)
+  playlist.tags.destroy(tag)
+  if tag.playlists.empty?
+    tag.destroy
+  end
+  redirect("/playlists/#{playlist.id}")
+end
+
 post('/playlists/:id/tags') do
   playlist = Playlist.find(params.fetch('id').to_i)
   new_tags = params.fetch('new-tags')
