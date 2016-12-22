@@ -20,5 +20,9 @@ describe(User) do
       user = User.create({:username => "Krieger", :password => "Guest"})
       expect(user.password.class).to eq BCrypt::Password
     end
+    it("validates presence of username") do
+      user = User.create({:username => "", :password => "Guest"})
+      expect(user.save).to(eq(false))
+    end
   end
 end

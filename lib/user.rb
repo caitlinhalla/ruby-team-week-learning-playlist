@@ -2,9 +2,11 @@ require('bcrypt')
 
 class User < ActiveRecord::Base
   include BCrypt
+  validates :username, presence:  true
   validates :password, confirmation: true
   has_and_belongs_to_many(:playlists)
   has_and_belongs_to_many(:lessons)
+
 
   def password
     @password ||= Password.new(password_hash)
