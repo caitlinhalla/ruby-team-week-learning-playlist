@@ -8,6 +8,7 @@ describe('adding a playlist', :type => :feature) do
     visit('/playlists')
     fill_in('playlist_name', :with => 'Ruby Lessons')
     fill_in('due_date', :with =>"2016-12-06")
+    fill_in('playlist_description', :with => 'Lots of Ruby lessons')
     page.check('private')
     click_button('Submit Playlist')
     expect(page).to have_content('Ruby Lessons')
