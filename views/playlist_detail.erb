@@ -15,13 +15,9 @@
 <% else %>
   <p>There are currently no lessons in this playlist. Use the dropdown below or the search function to add a lesson.</p>
 <% end %>
-
 <a href="/playlists/<%= @playlist.id %>/lessons/search" class="btn btn purple">Search Lessons</a>
-
 <h4>Due Date</h4>
 <h6><%=@playlist.due_date %></h6>
-
-
 <form class="edit-mode hidden" action="/playlists/<%= @playlist.id() %>" method="post">
   <h1>Update <%= @playlist.name %></h1>
   <input name="_method" type="hidden" value="patch">
@@ -33,17 +29,14 @@
   <input type="date" class="datepicker" name="new_due_date" placeholder="Click to Enter Due Date" value="<%=@playlist.due_date%>">
   <button type="submit" class="btn center btn-success">Update</button>
 </form>
-
 <form class="edit-mode hidden" action="/playlists/<%= @playlist.id() %>" method="post"  id="delete-button">
   <input name="_method" type="hidden" value="delete">
   <button type="submit" class="btn  red">Delete Playlist</button>
 </form>
-
 <button class="edit-mode btn cyan darken-2" onclick="editMode()">Edit</button>
 <button class="edit-mode btn cyan darken-2 hidden left" onclick="editMode()">Back</button>
 <br>
 <br>
-
 <div id="add_lesson_to_playist_form">
   <h4>Add a lesson to this playlist</h4>
   <% if @lessons.any? %>
@@ -60,7 +53,7 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   <% else %>
-    <p> There are no lessons to add. Make some! </p>
+    <p>There are no lessons to add. Make some!</p>
     <button class ="cyan" name="button"><a href="/lessons">Go to Lessons page!</a></button>
   <% end %>
 </div>

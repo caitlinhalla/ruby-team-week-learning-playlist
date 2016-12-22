@@ -102,5 +102,9 @@ h3, h4, h5 {
 }
 
 .row .col.playlist-card {
-  min-height: 360px;
+  max-height: 400px;
+}
+
+img {
+  object-fit: cover;
 }
