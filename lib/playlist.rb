@@ -1,7 +1,7 @@
 class Playlist < ActiveRecord::Base
   has_and_belongs_to_many(:lessons)
   has_and_belongs_to_many(:tags)
-  belongs_to(:user)
+  has_and_belongs_to_many(:users)
 
   after_initialize(:init)
 

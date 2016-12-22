@@ -13,21 +13,41 @@
       </div>
       <div class = 'card-stacked'>
         <div class='card-content'>
-          <h2><a href ="/lessons/<%= lesson.id %>" class="green-text accent-3"><%= lesson.title %></a></h2>
-          <p class='text-grey darken-2'>  <%= lesson.description %></p>
+          <h2><a href ="/playlists" class="green-text accent-3">There are no playlists</h2></a>
+          <p class='text-grey darken-2'>You have no playlists. Click this card to make some!</p>
         </div>
       </div>
     </div>
-    <% end %>
+
     <% else %>
-    <div class = 'card horizontal'>
-    <div class = 'card-stacked'>
-      <div class='card-content'>
-        <h2><a href ="/playlists/<%= @playlist.id %>" class="green-text accent-3">There are no lessons</h2></a>
-        <p class='text-grey darken-2'>This playlist has no lessons yet! Click this card to add some!</p>
-      </div>
-    </div>
-  </div>
+      <center><h2 class="header"><%= @playlist.name %></h2></center>
+      <p class="text-grey darken-2">
+        <%= @playlist.description %>
+      </p>
+      <% if @playlist.lessons.any? %>
+        <% @playlist.lessons.each do |lesson| %>
+          <div class = 'card horizontal'>
+            <div class = 'card-image'>
+              <img src='/img/progress-bar.png'>
+            </div>
+            <div class = 'card-stacked'>
+              <div class='card-content'>
+                <h2><a href ="/lessons/<%= lesson.id %>" class="green-text accent-3"><%= lesson.title %></a></h2>
+                <p class='text-grey darken-2'>  <%= lesson.description %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class = 'card horizontal'>
+          <div class = 'card-stacked'>
+            <div class='card-content'>
+              <h2><a href ="/playlists/<%= @playlist.id %>" class="green-text accent-3">There are no lessons</h2></a>
+              <p class='text-grey darken-2'>This playlist has no lessons yet! Click this card to add some!</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
 
     <% else %>

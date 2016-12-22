@@ -1,6 +1,5 @@
-<div class="card teal white-text">
-  <div class="card-content">
-    <span class="card-title"><%= @user.username %></span>
+
+    <h2 class="card-title"><%= @user.username %></h2>
     <div class="stats">
       <p>Playlists: <%= @user.playlists.length %></p>
       <p>Lessons: <%= @user.lessons.length %></p>
@@ -10,5 +9,3 @@
       <input type="hidden" name="_method" value="delete">
       <button class="red btn edit-mode hidden">Delete My Account</button>
     </form>
-  </div>
-</div>

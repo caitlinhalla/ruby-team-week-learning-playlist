@@ -18,5 +18,7 @@ end
 get('/dashboard') do
   @playlists = Playlist.all
   @playlist = Playlist.all.first
+  @playlists = @user.playlists if env['warden'].user
+  @playlist = @user.playlists.first if env['warden'].user
   erb(:dashboard)
 end

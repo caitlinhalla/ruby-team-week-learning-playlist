@@ -1,0 +1,12 @@
+<div id="add-tags" class="edit-mode card blue-grey lighten-3 white-text edit-mode hidden">
+  <div class="card-content">
+    <h5>Add Tags</h5>
+    <form action="/<%= parent_table %>/<%= object.id %>/tags" method="post">
+      <div class="form-group">
+        <label for="new-tags" class="black-text">Enter Tags (comma separated)</label>
+        <input type="text" name="new-tags" id="new-tags">
+      </div>
+      <button class="btn blue">Add Tags!</button>
+    </form>
+  </div>
+</div>

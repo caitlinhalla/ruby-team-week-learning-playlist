@@ -8,17 +8,21 @@ post('/playlists') do
   Tag.make_all(new_tags).each do |tag|
     playlist.tags.push(tag)
   end
-  redirect "/playlists"
+  env['warden'].user.playlists.push(playlist) if env['warden'].user
+  redirect "/playlists/#{playlist.id}"
 end
 
 get('/playlists') do
   @playlists = Playlist.all
+
+  @playlists = @user.playlists if env['warden'].user
   erb(:playlist_list)
 end
 
 get('/playlists/:id') do
   @playlist = Playlist.find(params.fetch('id').to_i)
   @lessons = Lesson.all
+  @lessons = @user.lessons if env['warden'].user
   erb(:playlist_detail)
 end
 

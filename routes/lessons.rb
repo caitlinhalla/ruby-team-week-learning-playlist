@@ -1,12 +1,15 @@
 get('/lessons') do
   @playlists = Playlist.all
   @lessons = Lesson.all
+  @lessons = @user.lessons if env['warden'].user
+  @playlists = @user.playlists if env['warden'].user
   erb(:lesson_list)
 end
 
 get('/lessons/:id') do
-  @playlists = Playlist.all
   @lesson = Lesson.find(params.fetch('id').to_i)
+  @playlists = Playlist.all
+  @playlists = @user.playlists if env['warden'].user
   erb(:lesson_detail)
 end
 
@@ -15,13 +18,17 @@ post('/lessons') do
   description = params.fetch('lesson_description')
   link = params.fetch('external_link')
   is_private = params.has_key?('is_private')
-  playlist = Playlist.find(params.fetch('playlist_id').to_i)
   new_lesson = Lesson.create({:title => title, :description => description, :external_link => link, :is_private => is_private})
-  new_lesson.playlists.push(playlist)
+
+  if params.has_key?('playlist_id')
+    playlist = Playlist.find(params.fetch('playlist_id').to_i)
+    new_lesson.playlists.push(playlist)
+  end
   new_tags = params.fetch('new-tags')
   Tag.make_all(new_tags).each do |tag|
       new_lesson.tags.push(tag)
   end
+  env['warden'].user.lessons.push(new_lesson) if env['warden'].user
   redirect '/lessons'
 end
 
