@@ -9,11 +9,12 @@ Currently, classroom instruction is one-size fits all. Whether in a public eleme
 
 **User Stories**
 
-* As an Student without a Guardian, I can add new lessons to my playlist for me to learn
-* As an Student without a Guardian, I can edit, update, delete my lessons
-* As an Student without a Guardian, I can search public lessons and add them to my list
-* As an Student without a Guardian, I can mark a lesson as in-progress or complete
-* As an Student without a Guardian, I can view my weekly/monthly/yearly lesson-completion/progress
+* As a user, I can add new playlists for me to learn
+* As a user, I can edit, update, delete my playlists
+* As a user, I can add new lessons to my playlist for me to learn
+* As a user, I can edit, update, delete my lessons
+* As a user, I can mark my lessons as public so they can be shared
+* As a user, I can search public lessons and add them to my list
 
 
 ## Setup/Installation Requirements
