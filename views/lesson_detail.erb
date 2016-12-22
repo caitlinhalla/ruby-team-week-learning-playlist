@@ -22,10 +22,8 @@
 
 <h5>Description: <%= @lesson.description %> </h5>
 <p><a href="<%= @lesson.url %>">  <%= @lesson.url %></a></p>
-
 <form action="/lessons/<%=@lesson.id%>" method="post" class="edit-mode hidden">
   <h4>Edit Lesson:</h4>
-
   <input type="hidden" name="_method" value="patch">
   <div class="input-field col s12">
     <input placeholder="" id="lesson_title" name="lesson_title" value="<%=@lesson.title%>" type="text" class="validate">
@@ -36,19 +34,19 @@
     <label for='lesson_description'>Lesson Description</label>
   </div>
   <div class='input-field col s12'>
-  <input placeholder='Enter content link' id='external_link' value="<%=@lesson.external_link%>" type='text' name="external_link" class='validate'>
+    <input placeholder='Enter content link' id='external_link' value="<%=@lesson.external_link%>" type='text' name="external_link" class='validate'>
     <label for='external_link'>Link to Lesson Content. Include the .com!</label>
   </div>
   <div class='input-field col s6'>
-  <input value="<%=@lesson.is_private%>" type="checkbox" id="is_private" name="is_private">
+    <input value="<%=@lesson.is_private%>" type="checkbox" id="is_private" name="is_private">
     <label for="is_private">Private Lesson</label>
   </div>
   <br>
   <br>
   <button type='submit' class='btn btn-success'>Update Lesson</button>
 </form>
-
 <form class="edit-mode hidden" action="/lessons/<%=@lesson.id%>" method="post">
   <input type="hidden" name="_method" value="delete">
   <button type="submit" class="btn red right" name="button">Delete</button>
 </form>
+

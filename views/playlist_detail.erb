@@ -46,9 +46,6 @@
   <p>There are currently no lessons in this playlist. Use the dropdown below or the search function to add a lesson.</p>
 <% end %>
 
-
-
-
 <form class="edit-mode hidden" action="/playlists/<%= @playlist.id() %>" method="post">
   <h1>Update <%= @playlist.name %></h1>
   <input name="_method" type="hidden" value="patch">
@@ -82,7 +79,7 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   <% else %>
-    <p> There are no lessons to add. Make some! </p>
+    <p>There are no lessons to add. Make some!</p>
     <button class ="cyan" name="button"><a href="/lessons">Go to Lessons page!</a></button>
   <% end %>
 </div>
