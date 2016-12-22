@@ -1,8 +1,9 @@
 <h1><%= @lesson.title  %></h1>
 <%= erb(:_tag_display, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
+<%= erb(:_tag_form, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
 
 <h5>Description: <%= @lesson.description %> </h5>
-<p><%= @lesson.external_link %></p>
+<p><a href="<%= @lesson.url %>">  <%= @lesson.url %></a></p>
 <h3>View Status:</h3>
 <%if @lesson.is_private == true %>
 <p>Private</p>
@@ -25,7 +26,7 @@
   </div>
   <div class='input-field col s12'>
   <input placeholder='Enter content link' id='external_link' value="<%=@lesson.external_link%>" type='text' name="external_link" class='validate'>
-    <label for='external_link'>Link to Lesson Content</label>
+    <label for='external_link'>Link to Lesson Content. Include the .com!</label>
   </div>
   <div class='input-field col s6'>
   <input value="<%=@lesson.is_private%>" type="checkbox" id="is_private" name="is_private">
@@ -41,9 +42,6 @@
   <button type="submit" class="btn red right" name="button">Delete</button>
 </form>
 
-<button class="edit-mode btn purple" onclick="editMode()">Edit</button>
 <button class="edit-mode btn purple hidden left" onclick="editMode()">Back</button>
 <br>
-<button class="btn blue" onclick="editMode()">Edit Mode</button>
-
-<%= erb(:_tag_form, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
+<button class="btn blue edit-mode" onclick="editMode()">Edit Mode</button>

@@ -14,5 +14,13 @@ describe Playlist do
       playlist = Playlist.create({:name => "Ruby"})
       expect(playlist.complete).to eq false
     end
+    it "validates presence of name" do
+        playlist = Playlist.create({:name => ""})
+        expect(playlist.save).to(eq(false))
+    end
+    it "validates presence of description" do
+        playlist = Playlist.create({:description => ""})
+        expect(playlist.save).to(eq(false))
+    end
   end
 end

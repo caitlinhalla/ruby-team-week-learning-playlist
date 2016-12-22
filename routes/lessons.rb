@@ -19,17 +19,21 @@ post('/lessons') do
   link = params.fetch('external_link')
   is_private = params.has_key?('is_private')
   new_lesson = Lesson.create({:title => title, :description => description, :external_link => link, :is_private => is_private})
-
-  if params.has_key?('playlist_id')
-    playlist = Playlist.find(params.fetch('playlist_id').to_i)
-    new_lesson.playlists.push(playlist)
-  end
-  new_tags = params.fetch('new-tags')
-  Tag.make_all(new_tags).each do |tag|
-      new_lesson.tags.push(tag)
-  end
-  env['warden'].user.lessons.push(new_lesson) if env['warden'].user
+  if new_lesson.save
+    if params.has_key?('playlist_id')
+        playlist = Playlist.find(params.fetch('playlist_id').to_i)
+        new_lesson.playlists.push(playlist)
+      end
+      new_tags = params.fetch('new-tags')
+      Tag.make_all(new_tags).each do |tag|
+          new_lesson.tags.push(tag)
+      end
+      env['warden'].user.lessons.push(new_lesson) if env['warden'].user
+      redirect '/lessons'
+  else
+  flash[:error] = "Title, Description, and Source cannot be blank!"
   redirect '/lessons'
+  end
 end
 
 patch('/lessons/:id') do

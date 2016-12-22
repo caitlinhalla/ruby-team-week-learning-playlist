@@ -1,12 +1,13 @@
 <% if @playlists.any? %>
-<h1>Your Playlists: </h1>
+  <h1>Your Playlists: </h1>
 
-<ul class='row'>
-  <% @playlists.each do |playlist| %>
-  <%= erb(:_playlist_card, :locals => {:playlist => playlist}) %>
-  <% end %>
-</ul>
+  <ul class='row'>
+    <% @playlists.each do |playlist| %>
+      <%= erb(:_playlist_card, :locals => {:playlist => playlist}) %>
+    <% end %>
+  </ul>
 
+<% else %>
+ <p>There are currently no playlists.  Use form below to make one! </p>
 <% end %>
-
 <%= erb(:_playlist_form) %>

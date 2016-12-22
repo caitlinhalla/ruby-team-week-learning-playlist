@@ -3,13 +3,19 @@ post('/playlists') do
   description = params.fetch('playlist_description')
   due_date = params.fetch('due_date')
   is_private = params.has_key?('private')
-  playlist = Playlist.create({:name => name, :description => description, :due_date => due_date, :is_private => is_private})
-  new_tags = params.fetch('new-tags')
-  Tag.make_all(new_tags).each do |tag|
-    playlist.tags.push(tag)
+  playlist = Playlist.new({:name => name, :description => description, :due_date => due_date, :is_private => is_private})
+  if playlist.save
+    new_tags = params.fetch('new-tags')
+    Tag.make_all(new_tags).each do |tag|
+      playlist.tags.push(tag)
+    end
+    env['warden'].user.playlists.push(playlist) if env['warden'].user
+
+    redirect "/playlists/#{playlist.id}"
+  else
+    flash[:error] = "Name and Description cannot be blank!"
+    redirect "/playlists"
   end
-  env['warden'].user.playlists.push(playlist) if env['warden'].user
-  redirect "/playlists/#{playlist.id}"
 end
 
 get('/playlists') do
@@ -44,6 +50,16 @@ end
 delete('/playlists/:id') do
   Playlist.find(params.fetch('id').to_i).destroy
   redirect('/playlists')
+end
+
+delete('/playlists/:playlist_id/tags/:id') do
+  playlist = Playlist.find(params.fetch('playlist_id').to_i)
+  tag = Tag.find(params.fetch('id').to_i)
+  playlist.tags.destroy(tag)
+  if tag.playlists.empty?
+    tag.destroy
+  end
+  redirect("/playlists/#{playlist.id}")
 end
 
 post('/playlists/:id/tags') do
