@@ -16,7 +16,7 @@
   <p>There are currently no lessons in this playlist. Use the dropdown below to add a lesson.</p>
 <% end %>
 
-<h5>Due Date</h5>
+<h4>Due Date</h4>
 <h6><%=@playlist.due_date %></h6>
 
 
@@ -39,13 +39,13 @@
 
 <a href="/playlists/<%= @playlist.id %>/lessons/search" class="btn btn purple">Search Lessons</a>
 
-<button class="edit-mode btn purple" onclick="editMode()">Edit</button>
-<button class="edit-mode btn purple hidden left" onclick="editMode()">Back</button>
+<button class="edit-mode btn cyan darken-2" onclick="editMode()">Edit</button>
+<button class="edit-mode btn cyan darken-2 hidden left" onclick="editMode()">Back</button>
 <br>
 <br>
 
 <div id="add_lesson_to_playist_form">
-  <h3>Add a lesson to this playlist!</h3>
+  <h4>Add a lesson to this playlist</h4>
   <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">
     <input name="_method" type="hidden" value="patch">
     <input type="hidden" name="playlist_id" id="playlist_id" value="<%= @playlist.id() %>">

@@ -80,3 +80,27 @@ body {
 .anchor {
   position: relative;S
 }
+
+
+h1 {
+  text-align: center;
+  color: #37474f;
+  text-shadow: 1px 1px #78909c;
+}
+
+h2 {
+  color: #37474f;
+}
+p {
+  color: #424242;
+}
+.btn, .btn:hover {
+  background-color: #00c853;
+}
+h3, h4, h5 {
+  color: #424242;
+}
+
+.row .col.playlist-card {
+  min-height: 360px;
+}
