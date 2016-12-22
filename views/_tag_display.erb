@@ -1,6 +1,6 @@
 <% unless object.tags.empty? %>
   <% object.tags.each do |tag| %>
-    <div class="edit-mode hidden inline">
+    <div class="tag-mode hidden inline">
       <form action="/<%= parent_table %>/<%= object.id %>/tags/<%= tag.id %>" method="post" class="inline">
         <input type="hidden" name="_method" value="delete">
         <button class="btn red small-round" id="tag-remove-<%= tag.id %>"><i class="tiny material-icons">delete</i></button>

@@ -1,17 +1,28 @@
-<h1><%= @lesson.title  %></h1>
+<div class="title-bar">
+  <h2>Lesson: <%= @lesson.title %></h2>
+  <div class="fixed-action-btn horizontal">
+    <a class="btn-floating blue-grey small tooltipped"
+      data-position="top" data-delay="20" data-tooltip="Options"
+      ><i class="material-icons">settings</i></a>
+    <ul>
+      <li><a class="btn-floating indigo tooltipped" onclick="editMode()"
+             data-position="top" data-delay="20" data-tooltip="Edit Lesson"
+             ><i class="material-icons">edit</i></a></li>
+       <li><a class="btn-floating blue tooltipped" onclick="tagMode()"
+             data-position="top" data-delay="20" data-tooltip="Edit Tags"
+             ><i class="material-icons">label</i></a></li>
+    </ul>
+  </div>
+</div>
+
+
+<span class="chip"><%= @lesson.is_private ? " Private" : "" %></span>
 <%= erb(:_tag_display, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
 <%= erb(:_tag_form, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
 
 <h5>Description: <%= @lesson.description %> </h5>
 <p><a href="<%= @lesson.url %>">  <%= @lesson.url %></a></p>
-<h3>View Status:</h3>
-<%if @lesson.is_private == true %>
-<p>Private</p>
-<% else %>
-<p>Public</p>
-<% end %>
-<br>
- <br>
+
 <form action="/lessons/<%=@lesson.id%>" method="post" class="edit-mode hidden">
   <h4>Edit Lesson:</h4>
 
@@ -41,7 +52,3 @@
   <input type="hidden" name="_method" value="delete">
   <button type="submit" class="btn red right" name="button">Delete</button>
 </form>
-
-<button class="edit-mode btn purple hidden left" onclick="editMode()">Back</button>
-<br>
-<button class="btn blue edit-mode" onclick="editMode()">Edit Mode</button>
