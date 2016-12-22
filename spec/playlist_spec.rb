@@ -3,7 +3,7 @@ require('spec_helper')
 describe Playlist do
   it { should have_and_belong_to_many(:lessons) }
   it { should have_and_belong_to_many(:tags) }
-  it { should belong_to(:user) }
+  it { should have_and_belong_to_many(:users) }
 
   describe '#init' do
     it "sets is_private to false if not provided" do

@@ -10,6 +10,21 @@ describe('the add lesson path', {:type => :feature}) do
     click_button('Submit Lesson')
     expect(page).to have_content('How to Git Good')
   end
+  it "will add the user relation to the lesson" do
+    visit '/auth/register'
+    fill_in('user[username]', :with => "pam")
+    fill_in('user[password]', :with => 'test')
+    fill_in('user[password-repeat]', :with => 'test')
+    click_button('Register')
+    visit('/lessons')
+    fill_in('lesson_title', :with => "How to Git Good")
+    fill_in('lesson_description', :with => "learn.")
+    fill_in('external_link', :with => "Yo.")
+    check('is_private')
+    click_button('Submit Lesson')
+    expect(page).to have_content('How to Git Good')
+    expect(User.find_by_username("pam").lessons).to eq [Lesson.all.first]
+  end
 end
 
 describe('the view lesson details path', {:type => :feature}) do

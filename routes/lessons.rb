@@ -1,5 +1,6 @@
 get('/lessons') do
   @lessons = Lesson.all
+  @lessons = @user.lessons if env['warden'].user
   erb(:lesson_list)
 end
 
@@ -13,7 +14,10 @@ post('/lessons') do
   description = params.fetch('lesson_description')
   link = params.fetch('external_link')
   is_private = params.has_key?('is_private')
-  Lesson.create({:title => title, :description => description, :external_link => link, :is_private => is_private})
+  lesson = Lesson.create({:title => title, :description => description, :external_link => link, :is_private => is_private})
+  
+  env['warden'].user.lessons.push(lesson) if env['warden'].user
+
   redirect '/lessons'
 end
 

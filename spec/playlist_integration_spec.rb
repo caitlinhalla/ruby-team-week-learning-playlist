@@ -27,5 +27,4 @@ describe('adding a playlist', :type => :feature) do
     click_button('Delete Playlist')
     expect(page).not_to have_content('Happy Playlist')
   end
-
 end
