@@ -6,12 +6,13 @@ set(:show_exceptions, false)
 describe('adding a playlist', :type => :feature) do
   it ('allows a user to create a playlist') do
     visit('/playlists')
-    fill_in('playlist_name', :with => 'Ruby Lessons')
+    click_button('Add playlist')
+    fill_in('playlist_name', :with => 'Java Lessons')
     fill_in('due_date', :with =>"2016-12-06")
-    fill_in('playlist_description', :with => 'Lots of Ruby lessons')
+    fill_in('playlist_description', :with => 'There is alot')
     page.check('private')
     click_button('Submit Playlist')
-    expect(page).to have_content('Ruby Lessons')
+    expect(page).to have_content('Java Lessons')
   end
 
   it('allows a user to update a playlist') do

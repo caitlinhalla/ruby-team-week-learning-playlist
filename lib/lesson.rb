@@ -11,4 +11,14 @@ class Lesson < ActiveRecord::Base
     self.is_private = false if self.is_private.nil?
     self.complete = false if self.complete.nil?
   end
+
+  def url 
+    url_check = self.external_link
+    if url_check.include? "https://www."
+      url_check
+    else
+      url_check = ("https://www.") +url_check
+    end
+  url_check
+  end
 end

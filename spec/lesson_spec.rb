@@ -26,4 +26,10 @@ describe Lesson do
       expect(lesson.save).to(eq(false))
     end
   end
+    describe "#url" do
+      it "will check to see if the link includeds 'https://www.', if false it will be added to the link." do
+        lesson = Lesson.create({:title => "Rails", :description => "It's off the rails", :external_link => "learnhowtoprogram.com"})
+        expect(lesson.url).to eq("https://www.learnhowtoprogram.com")
+    end
+  end
 end
