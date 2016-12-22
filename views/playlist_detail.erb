@@ -24,7 +24,7 @@
     <input type="hidden" name="playlist_id" id="playlist_id" value="<%= @playlist.id() %>">
   <br>
     <select id="lesson_id" name="lesson_id">
-      <% @playlist.lessons.each() do |lesson| %>
+      <% @lessons.each() do |lesson| %>
       <option value="<%= lesson.id() %>"><%= lesson.title() %></option>
       <% end %>
     </select>

@@ -1,10 +1,12 @@
 get('/lessons') do
+  @playlists = Playlist.all
   @lessons = Lesson.all
   @lessons = @user.lessons if env['warden'].user
   erb(:lesson_list)
 end
 
 get('/lessons/:id') do
+  @playlists = Playlist.all
   @lesson = Lesson.find(params.fetch('id').to_i)
   erb(:lesson_detail)
 end
@@ -15,9 +17,10 @@ post('/lessons') do
   link = params.fetch('external_link')
   is_private = params.has_key?('is_private')
   lesson = Lesson.create({:title => title, :description => description, :external_link => link, :is_private => is_private})
-  
-  env['warden'].user.lessons.push(lesson) if env['warden'].user
-
+  playlist = Playlist.find(params.fetch('playlist_id').to_i)
+  new_lesson = Lesson.create({:title => title, :description => description, :external_link => link, :is_private => is_private})
+  new_lesson.playlists.push(playlist)
+  env['warden'].user.lessons.push(new_lesson) if env['warden'].user
   redirect '/lessons'
 end
 
