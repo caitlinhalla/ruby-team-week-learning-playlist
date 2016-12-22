@@ -1,48 +1,50 @@
-<div class="row">
-  <form class="col s12 add-mode hidden" action="/lessons" method="post">
-    <h1>Lesson Form</h1>
-    <div class="row">
-      <div class="input-field col s12">
-        <input placeholder="Enter lesson Title" id="lesson_title" name="lesson_title" type="text" class="validate">
-        <label for="lesson_title">Lesson Title</label>
-      </div>
-    </div>
-    <div class='row'>
-      <div class="input-field col s12">
-        <input placeholder='Enter Lesson Description' id='lesson_description' name="lesson_description" type='text' class='validate'>
-        <label for='lesson_description'>Lesson Description</label>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='input-field col s12'>
-        <input placeholder='Enter content link' id='external_link' type='text' name="external_link" class='validate'>
-        <label for='external_link'>Link to Lesson Content. Include the .com!</label>
-      </div>
-    </div>
-    <div class='row'>
-      <div class='input-field col s6'>
-        <input type="checkbox" id="is_private" name="is_private">
-        <label for="is_private">Private Lesson</label>
-      </div>
-    </div>
-    <br>
-    <select id="playlist_id" name="playlist_id">
-      <% @playlists.each() do |playlist| %>
-        <option value="<%= playlist.id() %>"><%= playlist.name() %></option>
-      <% end %>
-    </select>
-    <label for="playlist_id">Select a playlist:</label>
-    <br>
-    <div id="add-tags" class="edit-mode card blue-grey lighten-3 white-text">
-      <div class="card-content">
-        <h5>Add Tags</h5>
-          <div class="form-group">
-            <label for="new-tags" class="black-text">Enter Tags (comma separated)</label>
-            <input type="text" name="new-tags" id="new-tags">
-          </div>
+<button class="btn blue-grey add-mode" onclick="addMode()">Add lesson </button>
+
+<div class="card blue-grey darken-3 white-text add-mode hidden">
+  <div class="row card-content">
+    <form class="col s12" action="/lessons" method="post">
+      <span class="card-title">Lesson Form</span>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Enter lesson Title" id="lesson_title" name="lesson_title" type="text" class="validate">
+          <label for="lesson_title">Lesson Title</label>
         </div>
       </div>
-    <button type='submit' class='btn'>Submit Lesson</button>
-  </form>
-  <button class="btn cyan add-mode" onclick="addMode()">Add lesson </button>
+      <div class='row'>
+        <div class="input-field col s12">
+          <input placeholder='Enter Lesson Description' id='lesson_description' name="lesson_description" type='text' class='validate'>
+          <label for='lesson_description'>Lesson Description</label>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='input-field col s12'>
+          <input placeholder='Enter content link' id='external_link' type='text' name="external_link" class='validate'>
+          <label for='external_link'>Link to Lesson Content. Include the .com!</label>
+        </div>
+      </div>
+
+      <label for="playlist_id">Select a playlist:</label>
+      <select id="playlist_id" name="playlist_id">
+        <% @playlists.each() do |playlist| %>
+          <option value="<%= playlist.id() %>"><%= playlist.name() %></option>
+        <% end %>
+      </select>
+
+
+      <div class="form-group">
+        <label for="new-tags">Enter Tags (comma separated)</label>
+        <input type="text" name="new-tags" id="new-tags">
+      </div>
+
+      <div class='row'>
+        <div class='input-field col s6'>
+          <input type="checkbox" id="is_private" name="is_private">
+          <label for="is_private">Private Lesson</label>
+        </div>
+      </div>
+            <br>
+
+      <button type='submit' class='btn'>Submit Lesson</button>
+    </form>
+  </div>
 </div>

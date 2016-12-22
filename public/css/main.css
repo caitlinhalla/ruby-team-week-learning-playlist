@@ -133,3 +133,7 @@ img {
 .fixed-action-btn.horizontal ul {
     right: 44px;
 }
+
+.right.pull-up {
+  margin-top: -46px;
+}

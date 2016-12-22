@@ -15,38 +15,44 @@
   </div>
 </div>
 
-
-<span class="chip"><%= @lesson.is_private ? " Private" : "" %></span>
+<% if @lesson.is_private %>
+  <span class="chip">Private</span>
+<% end %>
 <%= erb(:_tag_display, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
 <%= erb(:_tag_form, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
 
 <h5>Description: <%= @lesson.description %> </h5>
-<p><a href="<%= @lesson.url %>">  <%= @lesson.url %></a></p>
-<form action="/lessons/<%=@lesson.id%>" method="post" class="edit-mode hidden">
-  <h4>Edit Lesson:</h4>
-  <input type="hidden" name="_method" value="patch">
-  <div class="input-field col s12">
-    <input placeholder="" id="lesson_title" name="lesson_title" value="<%=@lesson.title%>" type="text" class="validate">
-    <label for="lesson_title">Lesson Title</label>
-  </div>
-  <div class="input-field col s12">
-    <input placeholder='Enter Lesson Description' id='lesson_description' name="lesson_description" value="<%=@lesson.description%>" type='text' class='validate'>
-    <label for='lesson_description'>Lesson Description</label>
-  </div>
-  <div class='input-field col s12'>
-    <input placeholder='Enter content link' id='external_link' value="<%=@lesson.external_link%>" type='text' name="external_link" class='validate'>
-    <label for='external_link'>Link to Lesson Content. Include the .com!</label>
-  </div>
-  <div class='input-field col s6'>
-    <input value="<%=@lesson.is_private%>" type="checkbox" id="is_private" name="is_private">
-    <label for="is_private">Private Lesson</label>
-  </div>
-  <br>
-  <br>
-  <button type='submit' class='btn btn-success'>Update Lesson</button>
-</form>
-<form class="edit-mode hidden" action="/lessons/<%=@lesson.id%>" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <button type="submit" class="btn red right" name="button">Delete</button>
-</form>
+<p><a href="<%= @lesson.url %>" target="_blank">  <%= @lesson.url %></a></p>
 
+
+<div class="card blue-grey darken-3 white-text edit-mode hidden">
+  <div class="card-content">
+    <form action="/lessons/<%=@lesson.id%>" method="post">
+      <span class="card-title">Edit Lesson</span>
+      <input type="hidden" name="_method" value="patch">
+      <div class="input-field col s12">
+        <input placeholder="" id="lesson_title" name="lesson_title" value="<%=@lesson.title%>" type="text" class="validate">
+        <label for="lesson_title">Lesson Title</label>
+      </div>
+      <div class="input-field col s12">
+        <input placeholder='Enter Lesson Description' id='lesson_description' name="lesson_description" value="<%=@lesson.description%>" type='text' class='validate'>
+        <label for='lesson_description'>Lesson Description</label>
+      </div>
+      <div class='input-field col s12'>
+        <input placeholder='Enter content link' id='external_link' value="<%=@lesson.external_link%>" type='text' name="external_link" class='validate'>
+        <label for='external_link'>Link to Lesson Content. Include the .com!</label>
+      </div>
+      <div class='input-field col s6'>
+        <input value="<%=@lesson.is_private%>" type="checkbox" id="is_private" name="is_private">
+        <label for="is_private">Private Lesson</label>
+      </div>
+      <br>
+      <br>
+      <button type='submit' class='btn btn-success'>Update Lesson</button>
+    </form>
+    <form class="edit-mode hidden" action="/lessons/<%=@lesson.id%>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="btn red right pull-up" name="button">Delete</button>
+    </form>
+  </div>
+</div>
