@@ -46,40 +46,59 @@
   <p>There are currently no lessons in this playlist. Use the dropdown below or the search function to add a lesson.</p>
 <% end %>
 
-<form class="edit-mode hidden" action="/playlists/<%= @playlist.id() %>" method="post">
-  <h1>Update <%= @playlist.name %></h1>
-  <input name="_method" type="hidden" value="patch">
-  <label for="playlist_name">Update playlist name:</label>
-  <input id="playlist_name" name="playlist_name" type="text" value="<%=@playlist.name%>">
-  <input name="_method" type="hidden" value="patch">
-  <label for="new_playlist_description">Update playlist description:</label>
-  <input id="new_playlist_description" name="new_playlist_description" type="text" value="<%=@playlist.description%>">
-  <input type="date" class="datepicker" name="new_due_date" placeholder="Click to Enter Due Date" value="<%=@playlist.due_date%>">
-  <button type="submit" class="btn center btn-success">Update</button>
-</form>
 
-<form class="edit-mode hidden" action="/playlists/<%= @playlist.id() %>" method="post"  id="delete-button">
-  <input name="_method" type="hidden" value="delete">
-  <button type="submit" class="btn  red">Delete Playlist</button>
-</form>
-
-<div id="add_lesson_to_playist_form" class="add-mode hidden">
-  <h4>Add a lesson to this playlist</h4>
-  <% if @lessons.any? %>
-    <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">
+<div class="card blue-grey darken-3 white-text edit-mode hidden">
+  <div class="card-content">
+    <form action="/playlists/<%= @playlist.id() %>" method="post">
+      <span class="card-title">Update <%= @playlist.name %></span>
       <input name="_method" type="hidden" value="patch">
-      <input type="hidden" name="playlist_id" id="playlist_id" value="<%= @playlist.id() %>">
-      <br>
-      <select id="lesson_id" name="lesson_id">
-        <% @lessons.each() do |lesson| %>
-          <option value="<%= lesson.id() %>"><%= lesson.title() %></option>
-        <% end %>
-      </select>
-      <label for="lesson_id">Select a lesson:</label>
-      <button type="submit" class="btn btn-primary">Submit</button>
+
+      <div class="form-group">
+        <label for="playlist_name">Update playlist name:</label>
+        <input id="playlist_name" name="playlist_name" type="text" value="<%=@playlist.name%>">
+
+      </div>
+
+      <div class="form-group">
+        <label for="new_playlist_description">Update playlist description:</label>
+        <input id="new_playlist_description" name="new_playlist_description" type="text" value="<%=@playlist.description%>">
+      </div>
+      <div class="form-group">
+        <label for="new_playlist_description">Update playlist date:</label>
+        <input type="date" class="datepicker" name="new_due_date" placeholder="Click to Enter Due Date" value="<%=@playlist.due_date%>">
+      </div>
+
+      <button type="submit" class="btn center btn-success">Update</button>
     </form>
-  <% else %>
-    <p>There are no lessons to add. Make some!</p>
-    <button class ="cyan" name="button"><a href="/lessons">Go to Lessons page!</a></button>
-  <% end %>
+
+    <form action="/playlists/<%= @playlist.id() %>" method="post"  id="delete-button">
+      <input name="_method" type="hidden" value="delete">
+      <button type="submit" class="btn red pull-up right">Delete Playlist</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="card blue-grey darken-3 white-text add-mode hidden">
+  <div class="card-content">
+    <div id="add_lesson_to_playist_form">
+      <span class="card-title">Add a lesson to this playlist</span>
+      <% if @lessons.any? %>
+        <form id="add_lesson_id" action="/playlists/<%=@playlist.id%>/lessons/add" method="post">
+          <input name="_method" type="hidden" value="patch">
+          <input type="hidden" name="playlist_id" id="playlist_id" value="<%= @playlist.id() %>">
+          <br>
+          <select id="lesson_id" name="lesson_id">
+            <% @lessons.each() do |lesson| %>
+              <option value="<%= lesson.id() %>"><%= lesson.title() %></option>
+            <% end %>
+          </select>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      <% else %>
+        <p>There are no lessons to add. Make some!</p>
+        <button class ="cyan" name="button"><a href="/lessons">Go to Lessons page!</a></button>
+      <% end %>
+    </div>
+  </div>
 </div>

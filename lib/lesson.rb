@@ -17,10 +17,10 @@ class Lesson < ActiveRecord::Base
 
   def url
     url_check = self.external_link
-    if url_check.include? "https://www."
+    if url_check.include? "https://"
       url_check
     else
-      url_check = ("https://www.") +url_check
+      url_check = ("https://") +url_check
     end
     url_check
   end
