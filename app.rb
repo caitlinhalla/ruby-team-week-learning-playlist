@@ -16,5 +16,6 @@ end
 
 get('/dashboard') do
   @playlists = Playlist.all
+  @playlist = Playlist.all.first
   erb(:dashboard)
 end
