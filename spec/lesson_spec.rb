@@ -13,5 +13,17 @@ describe Lesson do
       lesson = Lesson.create({:title => "Ruby"})
       expect(lesson.complete).to eq false
     end
+    it "validates the presence of lesson title" do
+      lesson = Lesson.create({:title => ""})
+      expect(lesson.save).to(eq(false))
+    end
+    it "validates the presence of lesson description" do
+      lesson = Lesson.create({:description=> ""})
+      expect(lesson.save).to(eq(false))
+    end
+    it "validates the presence of lesson external link" do
+      lesson = Lesson.create({:external_link => ""})
+      expect(lesson.save).to(eq(false))
+    end
   end
 end
