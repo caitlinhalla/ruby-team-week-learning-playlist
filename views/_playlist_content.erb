@@ -7,7 +7,7 @@
     <%@playlist.lessons.each do |lesson| %>
     <a href ="/lessons/<%= lesson.id %>"><li> <%= lesson.title %></li></a>
     <h5>Source:</h5>
-    <h6><%= lesson.external_link %></h6>
+    <h6><a href="<% lesson.external_link %>"><%= lesson.external_link %></a></h6>
     <% end %>
   </ul>
   <% else %>

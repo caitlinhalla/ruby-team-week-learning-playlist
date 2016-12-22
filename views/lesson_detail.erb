@@ -1,10 +1,19 @@
 <h1><%= @lesson.title  %></h1>
+
 <%= erb(:_tag_display, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
 <h5>Description: <%= @lesson.description %> </h5>
 <p><%= @lesson.external_link %></p>
+<h3>View Status:</h3>
+<%if @lesson.is_private == true %>
+<p>Private</p>
+<% else %>
+<p>Public</p>
+<% end %>
+<br>
+ <br>
+<form action="/lessons/<%=@lesson.id%>" method="post" class="edit-mode hidden">
+  <h4>Edit Lesson:</h4>
 
-
-<form class="" action="/lessons/<%=@lesson.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <div class="input-field col s12">
     <input placeholder="" id="lesson_title" name="lesson_title" value="<%=@lesson.title%>" type="text" class="validate">
@@ -23,13 +32,29 @@
     <label for="is_private">Private Lesson</label>
   </div>
   <br>
+  <br>
   <button type='submit' class='btn btn-success'>Update Lesson</button>
 </form>
 
-<form class="" action="/lessons/<%=@lesson.id%>" method="post">
+<div id="add-tags" class="edit-mode hidden card blue-grey lighten-3 white-text">
+  <div class="card-content">
+    <h5>Add Tags</h5>
+    <form action="/lessons/<%= @lesson.id %>/tags" method="post">
+      <div class="form-group">
+        <label for="new-tags" class="black-text">Enter Tags (comma separated)</label>
+        <input type="text" name="new-tags" id="new-tags">
+      </div>
+      <button class="btn blue">Add Tags!</button>
+    </form>
+  </div>
+</div>
+
+<form class="edit-mode hidden" action="/lessons/<%=@lesson.id%>" method="post">
   <input type="hidden" name="_method" value="delete">
-  <button type="submit" class="btn btn-danger" name="button">Delete</button>
+  <button type="submit" class="btn red right" name="button">Delete</button>
 </form>
+<button class="edit-mode btn purple" onclick="editMode()">Edit</button>
+<button class="edit-mode btn purple hidden left" onclick="editMode()">Back</button>
 <br>
 <button class="btn blue" onclick="editMode()">Edit Mode</button>
 

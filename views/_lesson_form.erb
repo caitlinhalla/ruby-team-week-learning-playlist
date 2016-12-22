@@ -1,6 +1,7 @@
-<h1>Lesson Form</h1>
+
 <div class="row">
-  <form class="col s12" action="/lessons" method="post">
+  <form class="col s12 add-mode hidden" action="/lessons" method="post">
+    <h1>Lesson Form</h1>
     <div class="row">
       <div class="input-field col s12">
         <input placeholder="Enter lesson Title" id="lesson_title" name="lesson_title" type="text" class="validate">
@@ -33,6 +34,16 @@
     </select>
     <label for="playlist_id">Select a playlist:</label>
     <br>
+    <div id="add-tags" class="edit-mode card blue-grey lighten-3 white-text">
+      <div class="card-content">
+        <h5>Add Tags</h5>
+          <div class="form-group">
+            <label for="new-tags" class="black-text">Enter Tags (comma separated)</label>
+            <input type="text" name="new-tags" id="new-tags">
+          </div>
+        </div>
+      </div>
     <button type='submit' class='btn btn-success'>Submit Lesson</button>
   </form>
+  <button class="btn cyan" onclick="addMode()">Add lesson </button>
 </div>

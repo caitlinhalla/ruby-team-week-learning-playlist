@@ -1,8 +1,16 @@
-
 <div class="row">
   <div class="col s12 m10">
-    <% if @playlist.nil? %>
-    <div class = 'card horizontal'>
+    <% unless @playlist.nil? %>
+      <center><h2 class="header"><%= @playlist.name %></h2></center>
+      <p class="text-grey darken-2">
+        <%= @playlist.description %>
+      </p>
+      <% if @playlist.lessons.any? %>
+        <% @playlist.lessons.each do |lesson| %>
+          <div class = 'card horizontal'>
+              <div class = 'card-image'>
+        <img src='/img/progress-bar.png'>
+      </div>
       <div class = 'card-stacked'>
         <div class='card-content'>
           <h2><a href ="/playlists" class="green-text accent-3">There are no playlists</h2></a>
@@ -40,6 +48,10 @@
           </div>
         </div>
       <% end %>
+    <% end %>
+
+    <% else %>
+    <p>No current playlists. Add one <a href="/playlists">here</a></p>
     <% end %>
   </div>
 </div>

@@ -1,6 +1,7 @@
-<h1>Create A Playlist</h1>
+
 <div class="row">
-  <form class="col s12" action='/playlists' method="post">
+  <form class="col s12 add-mode hidden" action='/playlists' method="post">
+    <h1>Create A Playlist</h1>
     <div class="row">
       <div class="input-field col s12">
         <input placeholder="Enter Playlist Name" id="playlist_name" name='playlist_name' type="text" class="validate">
@@ -8,25 +9,34 @@
       </div>
     </div>
     <div class="row" >
-
     <div class="input-field col s12">
       <input placeholder="Enter a breif description of the playlist" id="playlist_description" name='playlist_description' type="text" class="validate">
       <label for="playlist_description">Playlist Description</label>
     </div>
   </div>
-
     <div class="row">
       <div class="input-field col s6">
         <input type="date" class="datepicker" name="due_date" placeholder="Click to Enter Due Date">
       </div>
     </div>
-
     <div class ='row'>
       <div class="input-field col s6">
         <input type="checkbox" id="private" name ='private'>
         <label for="private">Private Lesson</label>
       </div>
     </div>
+    <div id="add-tags" class="edit-mode card blue-grey lighten-3 white-text">
+      <div class="card-content">
+        <h5>Add Tags</h5>
+          <div class="form-group">
+            <label for="new-tags" class="black-text">Enter Tags (comma separated)</label>
+            <input type="text" name="new-tags" id="new-tags">
+          </div>
+        </div>
+      </div>
     <button type='submit' class='btn btn-success'>Submit Playlist</button>
   </form>
+
+  <button class="btn cyan" onclick="addMode()">Add playlist</button>
+
 </div>
