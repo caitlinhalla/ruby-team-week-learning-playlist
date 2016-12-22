@@ -1,12 +1,9 @@
 <h1><%= @lesson.title  %></h1>
-
-<h3>Description:</h3>
-<p><%= @lesson.description %> </p>
-<h3>source:</h3>
+<%= erb(:_tag_display, :locals => {:object => @lesson, :parent_table => "lessons"}) %>
+<h5>Description: <%= @lesson.description %> </h5>
 <p><%= @lesson.external_link %></p>
-<h3>View Status:</h3>
-<p><%= @lesson.is_private %></p>
-<hr>
+
+
 <form class="" action="/lessons/<%=@lesson.id%>" method="post">
   <input type="hidden" name="_method" value="patch">
   <div class="input-field col s12">
@@ -34,28 +31,6 @@
   <button type="submit" class="btn btn-danger" name="button">Delete</button>
 </form>
 <br>
-<% unless @lesson.tags.empty? %>
-<h5>Tags:</h5>
-<% @lesson.tags.each do |tag| %>
-  <div class="edit-mode hidden inline">
-    <form action="/lessons/<%= @lesson.id %>/tags/<%= tag.id %>" method="post" class="inline">
-      <input type="hidden" name="_method" value="delete">
-      <button class="btn red small-round" id="tag-remove-<%= tag.id %>"><i class="tiny material-icons">delete</i></button>
-    </form>
-  </div>
- <span class="chip teal white-text"><%= tag.name %></span>
-<%end%>
-<%end%>
+<button class="btn blue" onclick="editMode()">Edit Mode</button>
 
-<div id="add-tags" class="edit-mode card blue-grey lighten-3 white-text">
-  <div class="card-content">
-    <h5>Add Tags</h5>
-    <form action="/lessons/<%= @lesson.id %>/tags" method="post">
-      <div class="form-group">
-        <label for="new-tags" class="black-text">Enter Tags (comma separated)</label>
-        <input type="text" name="new-tags" id="new-tags">
-      </div>
-      <button class="btn blue">Add Tags!</button>
-    </form>
-  </div>
-</div>
+<%= erb(:_tag_form, :locals => {:object => @lesson, :parent_table => "lessons"}) %>

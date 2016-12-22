@@ -8,12 +8,14 @@ post('/playlists') do
   due_date = params.fetch('due_date')
   is_private = params.has_key?('private')
   playlist = Playlist.create({:name => name, :description => description, :due_date => due_date, :is_private => is_private})
+
   env['warden'].user.playlists.push(playlist) if env['warden'].user
   redirect "/playlists/#{playlist.id}"
 end
 
 get('/playlists') do
   @playlists = Playlist.all
+
   @playlists = @user.playlists if env['warden'].user
   erb(:playlist_list)
 end
@@ -21,6 +23,7 @@ end
 get('/playlists/:id') do
   @playlist = Playlist.find(params.fetch('id').to_i)
   @lessons = Lesson.all
+  @lessons = @user.lessons if env['warden'].user
   erb(:playlist_detail)
 end
 
