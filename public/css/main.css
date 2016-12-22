@@ -42,3 +42,13 @@ body {
 #menu-bar {
   padding-top: 30px;
 }
+
+[type="checkbox"]+label:before,
+[type="checkbox"]:not(.filled-in)+label:after {
+  width: 30px;
+  height: 30px;
+}
+
+.checkbox {
+  padding-top: 20px;
+}
